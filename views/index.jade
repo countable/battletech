@@ -48,11 +48,11 @@ block content
         h2.name
 
         ul.picker
-          li.Mech.each
+          li.mechs.inline.each
             .name
             .remove &times;
           li
-            form.Mech.edit
+            .Mech.edit.inline
               input(type='text', name='name')
               select(name='type', name='type')
                 option(value='locust') Locust

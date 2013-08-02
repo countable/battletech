@@ -25,7 +25,6 @@
         that = @
         console.log '.' + @name + ' .remove'
         $('body').on 'click', '.' + @name + ' .remove', ->
-          console.log 'clicked'
           that.remove $(@).parents('.each').last().data 'item'
       
       @has: (what)->
@@ -101,9 +100,12 @@
     $('form.edit').on 'submit', (e)->
       e.preventDefault()
 
-      classes = $(@).get(0).className.split ' '
+      $form = $(@)
+      classes = $form.get(0).className.split ' '
       for klass in classes
-        TYPES[klass]?.add $(@).serializeObject()
-
+        if $form.hasClass 'inline'
+          TYPES[klass]?.add $form.serializeObject()
+        
+        
       return false
 

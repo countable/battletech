@@ -31,7 +31,6 @@
       that = this;
       console.log('.' + this.name + ' .remove');
       return $('body').on('click', '.' + this.name + ' .remove', function() {
-        console.log('clicked');
         return that.remove($(this).parents('.each').last().data('item'));
       });
     };
@@ -126,13 +125,16 @@
   window.Type = Type;
 
   $('form.edit').on('submit', function(e) {
-    var classes, klass, _i, _len, _ref;
+    var $form, classes, klass, _i, _len, _ref;
     e.preventDefault();
-    classes = $(this).get(0).className.split(' ');
+    $form = $(this);
+    classes = $form.get(0).className.split(' ');
     for (_i = 0, _len = classes.length; _i < _len; _i++) {
       klass = classes[_i];
-      if ((_ref = TYPES[klass]) != null) {
-        _ref.add($(this).serializeObject());
+      if ($form.hasClass('inline')) {
+        if ((_ref = TYPES[klass]) != null) {
+          _ref.add($form.serializeObject());
+        }
       }
     }
     return false;
