@@ -7,7 +7,8 @@ var express = require('express')
   , routes = require('./routes')
   , user = require('./routes/user')
   , http = require('http')
-  , path = require('path');
+  , path = require('path')
+  , assets = require('asset-rack');
 
 var app = express();
 
@@ -21,6 +22,12 @@ app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(
+  new assets.JadeAsset({
+      url: '/templates.js',
+      dirname: './templates'
+  })
+);
 
 // development only
 if ('development' == app.get('env')) {
@@ -28,8 +35,11 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
-app.get('/simple', function(req,res){
-  res.render('simple');
+app.get('/simple2', function(req,res){
+  res.render('simple2');
+});
+app.get('/basic', function(req,res){
+  res.render('basic');
 });
 app.get('/users', user.list);
 

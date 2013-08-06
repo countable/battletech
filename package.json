@@ -9,6 +9,7 @@
     "express": "3.3.4",
     "jade": "*",
     "stylus": "~0.36.0",
-    "coffee-script": "~1.6.3"
+    "coffee-script": "~1.6.3",
+    "asset-rack": "~2.2.1"
   }
 }
