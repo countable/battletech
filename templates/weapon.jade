@@ -1,0 +1,16 @@
+.weapon
+  .name #{name}
+  //
+    .heat
+      if heat > -1
+        | #{heat}
+  .damage
+    if heat > -1
+      | #{damage}
+    else
+      input(type='text', name='damage', size=4)
+  button
+    | +
+  button
+    | -
+  .count 0

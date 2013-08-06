@@ -1,0 +1,98 @@
+extends layout
+
+block content
+  
+  script(src="/javascripts/ElementStore.js")
+    
+  #render
+
+    ul.players
+      li.name
+
+    .players.multiplex
+      h1.name
+      .mechs
+        .name
+
+  :coffeescript
+
+    depth = 0
+    print = ->
+      x = depth
+      s = ''
+      while x
+        x-=1
+        s+='  '
+      console.log.apply console, [s].concat arguments
+
+    node_info = (node)->
+      ancestry = []
+      while node.tagName isnt 'BODY' and node
+        ancestry.unshift node.tagName
+        node = node.parentNode
+      console.log ancestry.join('-')
+
+    # Attempts to match a DOM node against an object various ways.
+    match_node = (node, data)->
+      keys = node.className.split ' '
+      for key in keys
+        match = data[key]
+        if match? then return match
+
+    render_literal = (node, value)->
+      node.innerText = value
+
+    render_array = (node, arr)->
+      i = arr.length
+      while i 
+        i -= 1
+        if i # For arrays, duplicate the matched node in order to render each element of the array.
+          newNode = node.cloneNode true
+          node.parentNode.insertBefore newNode, node
+          render newNode, arr[i]
+        else
+          render node, arr[i]
+        depth -= 1
+
+    render = (node, data)->
+      depth += 1 # debugging
+      return unless data? and node.tagName
+
+      match = match_node node, data
+      #node_info (node)
+      #print key, match, type, node.tagName
+      if match?
+        type = typeof match
+        if type is 'string' or type is 'number' # Literal
+          return render_literal node, match # Stop traversing when we've hit a literal
+        else if match.hasOwnProperty '0' # Array-like
+          return render_array node, match
+        else if type is 'object' # For regular objects, step into it, just keep traversing the matched node.
+          data = match
+
+      node = node.firstChild
+      while node
+        render node, data
+        depth -= 1 # debugging
+        node = node.nextSibling
+
+
+    data =
+      players: [
+          name: 'Clark'
+          mechs: [
+              name: 'Fatty'
+              type: 'Cicada'
+          ]
+        ,
+          name: 'Channing'
+          mechs: [
+              name: 'Herpes'
+              type: 'Titan'
+            ,
+              name: 'Angel'
+              type: 'Dragon'
+          ]
+      ]
+
+    render document.getElementById('render'), data

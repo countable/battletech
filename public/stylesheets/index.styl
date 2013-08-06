@@ -1,0 +1,158 @@
+
+@keyframes boom
+  0% 
+    opacity: 1;
+    -webkit-transform: scale(1);
+  100% 
+    opacity: 0;
+    -webkit-transform: scale(1.2);
+
+button
+  background-color white
+  border 2px solid black
+  padding 5px 10px
+  font-size 16px
+  cursor pointer
+  font-weight bold
+  &:hover
+    background-color black
+    color white
+
+input
+  border 0
+  border-bottom 2px solid black
+  font-size 18px
+  padding 5px
+
+.fire
+  border 2px solid red
+  border-radius 5px
+  padding 10px 20px
+  &:hover
+    background-color red
+    color white
+
+.damage-alert
+  position absolute
+  font-size 50px
+  line-height 40px
+  font-family "Arial Black"
+  z-index 100
+  color red
+  -webkit-animation boom 3s
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black
+  .crit
+    line-height 20px
+    font-size 25px
+
+.parts
+  background url(/images/mech.png) no-repeat
+  position relative
+  height 410px
+  width 300px
+  .part
+    border 2px solid black
+    text-align center
+    position absolute
+    background-color white
+    width 95px
+    height 95px
+    padding-top 2px
+    overflow hidden
+    .armor-wrapper, .structure-wrapper
+      font-size 0
+    .hp-full, .hp-empty
+      border-radius 50%
+      width 11px
+      height 11px
+      display inline-block
+      border-left 1px solid black
+      border-top 1px solid black
+    .armor-wrapper
+      .hp-full
+        background-color #37f
+      .hp-empty
+        background-color white
+    .structure-wrapper
+      .hp-full
+        background-color black
+      .hp-empty
+        background-color #eee
+
+  .HEAD
+    top 0
+    left 100px
+    border-radius 50%
+    padding 20px 10px
+
+  // ARMS and LEGS
+  .LEFT_ARM, .RIGHT_ARM
+    top 65px
+    width 50px
+    height 120px
+  .LEFT_LEG, .RIGHT_LEG
+    width 50px
+    height 130px
+    top 220px
+  .LEFT_ARM
+    left 12px
+    -webkit-transform rotate(5deg)
+  .RIGHT_ARM
+    right 12px
+    -webkit-transform rotate(-5deg)
+  .LEFT_LEG
+    left 65px
+    -webkit-transform rotate(7deg)
+  .RIGHT_LEG
+    right 65px
+    -webkit-transform rotate(-7deg)
+
+  // TORSO
+  .CENTER_TORSO
+    left 120px
+    top 100px
+    width 60px
+    height 100px
+  .LEFT_TORSO
+    left 72px
+  .RIGHT_TORSO
+    right 72px
+  .LEFT_TORSO, .RIGHT_TORSO
+    top 95px
+    width 50px
+  .LEFT_TORSO_REAR, .CENTER_TORSO_REAR, .RIGHT_TORSO_REAR        
+    top 30px
+    width 50px
+    height 50px
+  .LEFT_TORSO_REAR
+    left 320px
+  .CENTER_TORSO_REAR
+    left 375px
+  .RIGHT_TORSO_REAR
+    left 430px
+
+.sides
+  h1
+    margin 0
+  background-color black
+  padding 20px
+  .side
+    cursor pointer
+
+.weapon
+  cursor pointer
+  .damage, .heat, .count
+    display inline-block
+    font-size 18px
+  .damage, .heat, .count
+    width 25px
+    input
+      display block
+      width 100%
+  .heat
+    color darkred
+  .damage
+    font-weight bold
+
+.active
+  color red
