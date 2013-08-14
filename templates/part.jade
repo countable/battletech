@@ -1,4 +1,4 @@
-div.part(class = name)
+div.part(class=name + (structure < 1 ? ' destroyed' : ''))
 
   .armor-wrapper
     - for (var i=0; i<armor; i++)

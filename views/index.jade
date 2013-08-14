@@ -1,82 +1,94 @@
+
+
 extends layout
 
 block content
-  
-  script(src="/bower_components/jquery/jquery.js")
-
+  link(rel="stylesheet", href="/bower_components/skeleton/stylesheets/skeleton.css")
+  link(rel="stylesheet", href="/bower_components/skeleton/stylesheets/layout.css")
+  link(rel="stylesheet", href="stylesheets/index.css")
 
   :stylus
-    .each
+
+    .parts
       display none
-    .drawn
-      display block
-    ul
-      list-style none
+      .destroyed
+        background-color red
+
+    .players, .mechs
       li
-        float left
+        list-style none
         position relative
-      .remove
-        position absolute
-        top 0
-        right 0
-        font-size 2em
+        display inline-block
+        margin-right 20px
+        font-size 18px
+        color white
+        background-color black
+        padding 10px 30px
         cursor pointer
+        .remove
+          position absolute
+          top 0
+          right 0
+          cursor pointer
+      .active
+        color red
+      ul
+        display inline-block
+      .new
+        display inline-block
+        button
+          margin 0
+        input
+          width 150px
 
-    .picker li.Player
-      width 200px
-      margin-right 40px
-      padding 10px
-      background-color #ccc
 
-  h1= Mechs
+  .container
+      
+    .players
+      ul
+      .new
+        input(name='name')
+        button New Player
+    
+    .mechs
+      ul
+      .new
+        select(name='type')
 
-  ul.picker
-    li.Player.each
-      .name
-      .remove &times;
-    li
-      form.Player.edit
-        input(type='text', name='name')
-        button(type='submit') add player
+        input(name='name')
+        button New Mech
+    
+    .clearfix.parts
+
+    .clearfix
+      .sides.chamfered.four.columns
+        .two.columns
+          h1 pick side
+        .one.columns
+          .side LEFT
+          .side.active CENTER
+          .side RIGHT
+          .side REAR
+        button.fire FIRE
+
+      .weapons.twelve.columns
+        .columns.energy(style='width:20%')
+          h4 Energy
+        .columns.ballistic(style='width:20%')
+          h4 Ballistic
+        .columns.missile(style='width:20%')
+          h4 Missile
+        .columns.close(style='width:20%')
+          h4 Close Combat
   
-  .clearfix
+  footer
+    | Concept by Channing Guenther; Programmed by 
+    a(href="http://countable.ca", target="_blank") Clark Van Oyen
 
-  .sheets
-
-    ul
-      li.Player.each.multiplex
-        h2.name
-
-        ul.picker
-          li.mechs.inline.each
-            .name
-            .remove &times;
-          li
-            .Mech.edit.inline
-              input(type='text', name='name')
-              select(name='type', name='type')
-                option(value='locust') Locust
-              button(type='submit') add player
-
-  script(src="/javascripts/js.js")
-
-  :coffeescript
-    class Player extends Type
-      @has 'Mech'
-      @define()
-
-    class Mech extends Type
-      @define()
-
-    $('.picker').on 'click', '.Player.each .name', ->
-      $tgt = $(@).parents('.each')
-      window.location.hash = $tgt.data('item').name
-
-    route = ->
-      locs = window.location.hash[1..].split '/'
-      TYPES.Player.active_item = TYPES.Player.findOne 'name', locs[0]
-      TYPES.Player.render()
-      #TYPES.Mechs.multiplex TYPES.Mechs.findOne 'name', locs[0]
-
-    $(window).bind 'hashchange', route
-    route()
+  script(src="/bower_components/jquery/jquery.js")
+  script(src="/bower_components/routie/lib/routie.js")
+  script(src="/bower_components/underscore/underscore.js")
+  script(src="/javascripts/data.js")
+  script(src="/templates.js")
+  script(src="/javascripts/game.js")
+  script(src="/javascripts/mechs.js")

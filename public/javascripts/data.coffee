@@ -57,23 +57,23 @@ NS.WEAPONS = [
     type: 'ballistic'
   ,
     name: "LRM 5",
-    heat:5,
-    damage:2,
+    heat:4,
+    damage:1,
     type: 'missile' 
   ,
     name: "LRM 10",
-    heat:10,
-    damage: 4,
+    heat:4,
+    damage: 1,
     type: 'missile'
   ,
     name: "LRM 15",
-    heat:15,
-    damage: 5,
+    heat:5,
+    damage: 1,
     type: 'missile'
   ,
     name: "LRM 20",
-    heat:20,
-    damage: 6,
+    heat:6,
+    damage: 1,
     type: 'missile'
   ,
     name: "SRM 2",
@@ -83,12 +83,12 @@ NS.WEAPONS = [
   ,
     name: "SRM 4",
     heat:4,
-    damage:3,
+    damage:2,
     type: 'missile'
   ,
     name: "SRM 6",
-    heat:6,
-    damage:4,
+    heat:4,
+    damage:2,
     type: 'missile'
   ,
     name: "Punch",
@@ -192,9 +192,9 @@ NS.PUNCH_HIT_LOCATION =
     '6': 'HEAD'
   REAR:
     '1': 'LEFT_ARM'
-    '2': 'LEFT_TORSO'
+    '2': 'LEFT_TORSO_REAR'
     '3': 'REAR_TORSO'
-    '4': 'RIGHT_TORSO'
+    '4': 'RIGHT_TORSO_REAR'
     '5': 'RIGHT_ARM'
     '6': 'HEAD'
 
@@ -250,61 +250,28 @@ NS.PARTS =
   CENTER_TORSO_REAR:{}
   RIGHT_TORSO_REAR:{}
 
-NS.MECHS = {}
-(->
+NS.MISSILE_HITS_COLUMNS =
+    2: 0 # SRM 2 = column 1
+    4: 1 # SRM 4 = column 2
+    6: 3 # SRM 6 = column 4
 
-  class Mech
-    constructor: ->
+    5: 2 # LRM 5 = column 3
+    10: 4 # LRM 10 = column 5
+    15: 5 # LRM 15 = column 6
+    20: 6 # LRM 20 = column 7
 
-      # Start at full life
-      for part, part_info of PARTS
-        @['armor_'+part]=@['ARMOR_'+part]
-      for part, part_info of PARTS
-        @['structure_'+part]=@['STRUCTURE_'+part]
-
-  class Vulcan extends Mech
-
-    ARMOR_HEAD: 8
-    ARMOR_LEFT_ARM: 6
-    ARMOR_RIGHT_ARM: 6
-    ARMOR_LEFT_TORSO: 8
-    ARMOR_CENTER_TORSO: 10
-    ARMOR_RIGHT_TORSO: 8
-    ARMOR_LEFT_LEG: 10
-    ARMOR_RIGHT_LEG: 10
-    ARMOR_LEFT_TORSO_REAR: 4
-    ARMOR_CENTER_TORSO_REAR: 6
-    ARMOR_RIGHT_TORSO_REAR: 4
-
-    STRUCTURE_HEAD: 8
-    STRUCTURE_LEFT_ARM: 6
-    STRUCTURE_RIGHT_ARM: 6
-    STRUCTURE_LEFT_TORSO: 8
-    STRUCTURE_CENTER_TORSO: 10
-    STRUCTURE_RIGHT_TORSO: 8
-    STRUCTURE_LEFT_LEG: 10
-    STRUCTURE_RIGHT_LEG: 10
-
-  class @VulcanVL2T extends Vulcan
-    name: "Vulcan VL-2T"
-
-    CRIT_RIGHT_TORSO_5: 'Machine Gun'
-
-    CRIT_RIGHT_MAR_4: 'Flamer'
-
-    CRIT_CENTER_TORSO_5: 'Jump Jet'
-    CRIT_CENTER_TORSO_6: 'Jump Jet'
-
-    CRIT_LEFT_TORSO_1: 'Jump Jet'
-    CRIT_LEFT_TORSO_2: 'Jump Jet'
-    CRIT_LEFT_TORSO_3: 'Medium Laser'
-    CRIT_LEFT_TORSO_4: 'Ammo (Machine Gun) 200'
-
-    CRIT_LEFT_TORSO_1: 'Heat Sink'
-    CRIT_LEFT_TORSO_2: 'Jump Jet'
-    CRIT_LEFT_TORSO_3: 'Jump Jet'
-    CRIT_LEFT_TORSO_4: 'AC/2'
-    CRIT_LEFT_TORSO_5: 'Ammo (AC/2) 45'
-
-).apply NS.MECHS
-
+NS.MISSILE_HITS_TABLE = [
+    [2,  4,  5,  6,  10, 15,  20] # DUMMY
+    [2,  4,  5,  6,  10, 15,  20] # DUMMY
+    [1,  1,  1,  2,  3,  5,   6]  # Rolled a 2
+    [1,  2,  2,  2,  3,  5,   6]  # Rolled a 3
+    [1,  2,  2,  3,  4,  6,   9]  # Rolled a 4
+    [1,  2,  3,  3,  6,  9,   12]  # Rolled a 5
+    [1,  2,  3,  4,  6,  9,   12]  # Rolled a 6
+    [1,  3,  3,  4,  6,  9,   12]  # Rolled a 7
+    [2,  3,  3,  4,  6,  9,   12]  # Rolled a 8
+    [2,  3,  4,  5,  8,  12,  16]  # Rolled a 9
+    [2,  3,  4,  5,  8,  12,  16]  # Rolled a 10
+    [2,  4,  5,  6,  10, 15,  20]  # Rolled a 11
+    [2,  4,  5,  6,  10, 15,  20]  # Rolled a 12
+]

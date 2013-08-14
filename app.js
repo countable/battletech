@@ -34,12 +34,8 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/', routes.index);
-app.get('/simple2', function(req,res){
-  res.render('simple2');
-});
-app.get('/basic', function(req,res){
-  res.render('basic');
+app.get('/', function(req,res){
+  res.render('index');
 });
 app.get('/users', user.list);
 
