@@ -1,0 +1,15 @@
+
+ul
+  for mech in active_player.mechs
+    li(class = mech == active_mech ? 'active': 'inactive')
+      .name!= mech.name
+      .type!= mech.type
+      .remove x
+.new
+  select(name='type')
+    - for (title in MECHS)
+      - MECH = MECHS[title]
+      option(value=MECH.prototype.NAME)!= MECH.prototype.NAME
+
+  input(name='name')
+  button +

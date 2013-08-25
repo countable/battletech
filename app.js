@@ -7,10 +7,19 @@ var express = require('express')
   , routes = require('./routes')
   , user = require('./routes/user')
   , http = require('http')
+  , app = express()
+  , server = http.createServer(app)
   , path = require('path')
-  , assets = require('asset-rack');
+  , assets = require('asset-rack')
+  , bone = require('bone.io')
+  , io = require('socket.io').listen(server);
 
-var app = express();
+bone.set('io.options', {
+  server: io
+});
+
+
+app.use(bone.static());
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -25,7 +34,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(
   new assets.JadeAsset({
       url: '/templates.js',
-      dirname: './templates'
+      dirname: './views/client'
   })
 );
 
@@ -39,6 +48,6 @@ app.get('/', function(req,res){
 });
 app.get('/users', user.list);
 
-http.createServer(app).listen(app.get('port'), function(){
+server.listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });

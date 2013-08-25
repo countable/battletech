@@ -3,92 +3,67 @@
 extends layout
 
 block content
-  link(rel="stylesheet", href="/bower_components/skeleton/stylesheets/skeleton.css")
-  link(rel="stylesheet", href="/bower_components/skeleton/stylesheets/layout.css")
   link(rel="stylesheet", href="stylesheets/index.css")
 
-  :stylus
-
-    .parts
-      display none
-      .destroyed
-        background-color red
-
-    .players, .mechs
-      li
-        list-style none
-        position relative
-        display inline-block
-        margin-right 20px
-        font-size 18px
-        color white
-        background-color black
-        padding 10px 30px
-        cursor pointer
-        .remove
-          position absolute
-          top 0
-          right 0
-          cursor pointer
-      .active
-        color red
-      ul
-        display inline-block
-      .new
-        display inline-block
-        button
-          margin 0
-        input
-          width 150px
-
-
   .container
-      
+    
     .players
-      ul
-      .new
-        input(name='name')
-        button New Player
     
     .mechs
-      ul
-      .new
-        select(name='type')
-
-        input(name='name')
-        button New Mech
     
-    .clearfix.parts
+    .parts
 
-    .clearfix
-      .sides.chamfered.four.columns
-        .two.columns
-          h1 pick side
-        .one.columns
-          .side LEFT
-          .side.active CENTER
-          .side RIGHT
-          .side REAR
-        button.fire FIRE
+    .weapons
+      .sides
+        span.side LEFT 
+        span.side.active CENTER 
+        span.side RIGHT 
+        span.side REAR
 
-      .weapons.twelve.columns
-        .columns.energy(style='width:20%')
-          h4 Energy
-        .columns.ballistic(style='width:20%')
-          h4 Ballistic
-        .columns.missile(style='width:20%')
-          h4 Missile
-        .columns.close(style='width:20%')
-          h4 Close Combat
-  
+      .energy.weapon-type
+        h4 Energy
+      .ballistic.weapon-type
+        h4 Ballistic
+      .missile.weapon-type
+        h4 Missile
+      .close.weapon-type
+        h4 Close Combat
+
+      button.fire FIRE
+  .clearfix
   footer
     | Concept by Channing Guenther; Programmed by 
     a(href="http://countable.ca", target="_blank") Clark Van Oyen
-
+  
+  // Libraries
   script(src="/bower_components/jquery/jquery.js")
-  script(src="/bower_components/routie/lib/routie.js")
   script(src="/bower_components/underscore/underscore.js")
-  script(src="/javascripts/data.js")
+  script(src="/socket.io/socket.io.js")
+  script(src="/bone.io/bone.io.js")
+  :coffeescript
+    # Forgot to download underscore before going on the airplane - just write the parts I'm using here:
+    ###
+    window._=
+      findWhere: (objs, condition)->
+        check = (item)->
+          for k,v of condition
+            if item[k] isnt v
+              return false
+          return true
+        return (o for o in objs when check(o))[0]
+    ###
+
+  // JadeAsset with JST exposed in Templates namespace.
   script(src="/templates.js")
+  
+  // Application Code
+  script(src="/javascripts/data/data.js")
+  script(src="/javascripts/data/mechs.js")
+  script(src="/javascripts/data/light-mechs.js")
+  script(src="/javascripts/data/medium-mechs.js")
+  script(src="/javascripts/data/heavy-mechs.js")
+  script(src="/javascripts/data/assault-mechs.js")
+  script(src="/javascripts/data/structure.js")
   script(src="/javascripts/game.js")
-  script(src="/javascripts/mechs.js")
+  script(src="/javascripts/views.js")
+  script(src="/javascripts/routes.js")

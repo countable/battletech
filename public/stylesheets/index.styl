@@ -1,12 +1,18 @@
 
-@keyframes boom
-  0% 
-    opacity: 1;
-    -webkit-transform: scale(1);
-  100% 
-    opacity: 0;
-    -webkit-transform: scale(1.2);
+// BASE
+body 
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif
 
+*, *:before, *:after 
+  -moz-box-sizing: border-box
+  -webkit-box-sizing: border-box
+  box-sizing: border-box
+ 
+select
+  appearance none
+  -webkit-appearance none
+
+// ELEMENT DEFAULTS
 button
   background-color white
   border 2px solid black
@@ -18,11 +24,24 @@ button
     background-color black
     color white
 
-input
+input, select
   border 0
   border-bottom 2px solid black
   font-size 18px
   padding 5px
+
+.columns
+  display inline-block
+
+
+// WEAPON ANIMATIONS
+@keyframes boom
+  0% 
+    opacity: 1;
+    -webkit-transform: scale(1);
+  100% 
+    opacity: 0;
+    -webkit-transform: scale(1.2);
 
 .fire
   border 2px solid red
@@ -45,11 +64,55 @@ input
     line-height 20px
     font-size 25px
 
+// LAYOUT
+.parts
+  display none
+  .destroyed
+    background-color red
+
+.players, .mechs
+  margin 1px
+  padding 0
+  ul
+    padding 0
+  ul, li
+    margin 0
+    display inline-block
+  li
+    color white
+    background-color black
+    margin-right 1px
+    padding 10px 30px
+    list-style none
+    position relative
+    .name
+      font-size 20px
+      cursor pointer
+    .type
+      font-size 13px
+      font-style italic
+    .remove
+      position absolute
+      top 0
+      right 0
+      cursor pointer
+  .active
+    color red
+  .new
+    padding-top 5px
+    display inline-block
+    button
+      margin 0
+    input
+      width 150px
+
 .parts
   background url(/images/mech.png) no-repeat
   position relative
   height 410px
   width 300px
+  margin-right 200px
+  float left
   .part
     border 2px solid black
     text-align center
@@ -132,13 +195,14 @@ input
     left 430px
 
 .sides
-  h1
-    margin 0
-  background-color black
   padding 20px
   .side
     cursor pointer
 
+.weapons
+  float left
+.weapon-type
+  float left
 .weapon
   cursor pointer
   .damage, .heat, .count

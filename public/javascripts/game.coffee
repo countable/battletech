@@ -6,98 +6,8 @@ d12 = ->
   return Math.floor Math.random() * 12 + 1
 
 
-players = (JSON.parse localStorage.getItem 'players') or []
+window.players = (JSON.parse localStorage.getItem 'players') or []
 
-
-drawWeapons = ->
-  WEAPONS.forEach (weapon)->
-    $('.weapons .'+weapon.type).append Templates.weapon weapon
-
-
-drawPlayers = ->
-  $('.players ul').empty()
-  players.forEach (player)->
-    $li = $ Templates.player player
-    if player is active_player then $li.addClass 'active'
-    $('.players ul').append $li
-
-drawMechs = ->
-  $('.mechs ul').empty()
-  players.forEach (player)->
-    $('.players ul').append Templates.player player
-
-
-routePlayer = (player)->
-  player = _.findWhere players, name:player
-  window.location.hash = player.name
-
-
-routeMech = (mech)->
-  mech = _.findWhere active_player.mechs, name:mech
-  window.location.hash = active_player.name + '/' + mech.name
-
-
-drawPlayerForces = ->
-  $('.mechs ul').empty()
-  active_player.mechs.forEach (mech)->
-    $li = $ Templates.mech mech
-    if active_mech is mech then $li.addClass 'active'
-    $('.mechs ul').append $li
-
-
-$('.players .new button').click ->
-  players.push
-    name: $('.players .new [name="name"]').val()
-    mechs: []
-  localStorage.setItem 'players', JSON.stringify players
-  drawPlayers()
-
-
-$('.mechs .new button').click ->
-  active_player.mechs.push
-    name: $('.mechs .new [name="name"]').val()
-    type: $('.mechs .new select').val()
-  localStorage.setItem 'players', JSON.stringify players
-  drawPlayerForces()
-
-
-$('.players').on 'click', 'li', (e)->
-  routePlayer($(e.target).text())
-
-
-$('.mechs').on 'click', 'li', (e)->
-  routeMech($(e.target).text())
-
-
-
-drawMech = ->
-  $('.parts').empty().show()
-  for part, part_info of PARTS
-    context=
-      name: part
-      armor: _mech['ARMOR_'+part]
-      structure: _mech['STRUCTURE_'+part]
-      armor_remaining: _mech['armor_'+part]
-      structure_remaining: _mech['structure_'+part]
-    $('.parts').append Templates.part context
-
-
-
-
-# Choose a side to fire on.
-$('.sides .side').click ->
-  $('.sides .side').removeClass 'active'
-  $(@).addClass 'active'
-
-
-# Pick weapons
-$('.weapon button').click ->
-  if $(@).text() == '-'
-    delta = -1
-  else
-    delta = 1
-  $count = $(@).parents('.weapon').find('.count')
-  $count.text Math.max 0, delta + parseInt $count.text()
 
 
 add_critical_message = ->
@@ -122,13 +32,13 @@ critical_hit = (part)->
   if candidates.length
     hit = candidates[Math.floor(Math.random()*candidates.length)]
     add_critical_message 'hit '+part+' : '+hit.slot
-    _mech['destroyed_'+part+'_'+hit.i] = true
+    active_mech['destroyed_'+part+'_'+hit.i] = true
   #else if PARTS[part].flows_to
   #  critical_hit PARTS[part].flows_to
 
 
 destroy = ->
-  _mech.destroyed = true
+  active_mech.destroyed = true
   alert "DESTROYED!!!"
 
 
@@ -150,13 +60,13 @@ damage_animation = ($part, damage, critical = '')->
 critical_message = ''
 damage_to = (part, damage, force_critical=false)->
 
-  #console.log part, 'hit with', damage, 'damage!'
+  console.log part, 'hit with', damage, 'damage!'
   $part = $('.'+part)
   critical_message = ''
   #armor = parseInt $part.find('.armor').val()
   #structure = parseInt $part.find('.structure').val()
-  armor = _mech['armor_'+part]
-  orig_structure = structure = _mech['structure_'+part]
+  armor = active_mech['armor_'+part]
+  orig_structure = structure = active_mech['structure_'+part]
 
   if force_critical
     critical_hit part
@@ -168,7 +78,7 @@ damage_to = (part, damage, force_critical=false)->
     # REAR TORSO ARMOR MAPS TO FRONT TORSO STRUCTURE
     part = part.replace '_REAR', ''
     $part = $('.'+part)
-    structure = _mech['structure_'+part]
+    structure = active_mech['structure_'+part]
 
     # Remainder comes off structure.
     if structure # If there's any structure left, administer a critical.
@@ -208,97 +118,54 @@ damage_to = (part, damage, force_critical=false)->
 
   #console.log critical_message, 'was the message'
   damage_animation $part, damage, critical_message
-  _mech['structure_'+part] = structure
-  _mech['armor_'+part] = armor
+  active_mech['structure_'+part] = structure
+  active_mech['armor_'+part] = armor
 
+window.hit_with_weapon = (weapon)->
+  console.log "HIT WITH",weapon.name
+  side = $.trim $('.sides .active').text()
+  console.log "SIDE", side
+  apply_damage = (dmg)->
+    if weapon.name is 'Punch' or weapon.name is "Hatchet"
+      roll = d6()
+      location = PUNCH_HIT_LOCATION[side][roll + '']
+    else if weapon.name is 'Kick'
+      roll = d6()
+      location = KICK_HIT_LOCATION[side][roll + '']
+    else
+      roll = d6() + d6()
+      location = RANGED_HIT_LOCATION[side][roll + '']
 
-$('.fire').click ->
-  
-  $weapons = $('.count').filter(-> parseInt($(@).text()) > 0).parent()
+    #console.log 'hit the', location, 'for',dmg
+    damage_to location, dmg, roll is 2
 
-  $weapons.each (weapon)->
-    count = parseInt $(@).find('.count').text()
-    while count
+  m = weapon.name.match /(\S+)\s(\d+)/
+  if m
+    # Missile fired.
+    qty = m[2]
+    missile_type = m[1]
+    roll = d6() + d6()
+    qty = MISSILE_HITS_TABLE[roll][MISSILE_HITS_COLUMNS[qty]]
+  else
+    qty = 1
+    missile_type = null
 
-      weapon_name = $(@).find('.name').text()
+  #console.log 'number of hits', qty, 'of type', missile_type
 
-      apply_damage = (dmg)->
-        if weapon_name is 'Punch' or weapon_name is "Hatchet"
-          roll = d6()
-          location = PUNCH_HIT_LOCATION[side][roll + '']
-        else if weapon_name is 'Kick'
-          roll = d6()
-          location = KICK_HIT_LOCATION[side][roll + '']
-        else
-          roll = d6() + d6()
-          location = RANGED_HIT_LOCATION[side][roll + '']
+  if missile_type is 'SRM'
+    idx = qty
+    while idx
+      apply_damage 2
+      idx -= 1
 
-        #console.log 'hit the', location, 'for',dmg
-        damage_to location, dmg, roll is 2
+  else if missile_type is 'LRM'
+    idx = qty
+    while idx > 0
+      apply_damage Math.min(5, idx)
+      idx -= 5
 
-      m = weapon_name.match /(\S+)\s(\d+)/
-      if m
-        # Missile fired.
-        qty = m[2]
-        missile_type = m[1]
-        roll = d6() + d6()
-        qty = MISSILE_HITS_TABLE[roll][MISSILE_HITS_COLUMNS[qty]]
-      else
-        qty = 1
-        missile_type = null
-
-      #console.log 'number of hits', qty, 'of type', missile_type
-
-      count -= 1
-      side = $('.sides .active').text()
-
-      if missile_type is 'SRM'
-        idx = qty
-        while idx
-          apply_damage 2
-          idx -= 1
-
-      else if missile_type is 'LRM'
-        idx = qty
-        while idx > 0
-          apply_damage Math.min(5, idx)
-          idx -= 5
-
-      else
-        apply_damage parseInt $(@).find('.damage').text() or $(@).find('[name="damage"]').val()
+  else
+    apply_damage weapon.damage
 
 
 
-  $('.count').text(0)
-  drawMech()
-
-
-active_player = undefined
-active_mech = undefined
-_mech = undefined
-
-$ ->
-  for title, mech of MECHS
-    $('select').append "<option value='"+mech.name+"'>"+mech.name+"</option>"
-  drawWeapons()
-  _mech = new MECHS.VulcanVL2T
-
-  routie
-
-    ':player': (player)->
-      active_player = _.findWhere players, {name:player}
-      drawPlayers()
-      drawPlayerForces()
-      $('.parts').hide()
-
-    ':player/:mech': (player, mech)->
-
-      active_player = _.findWhere players, {name:player}
-      active_mech =  _.findWhere active_player.mechs, {name:mech}
-
-      #console.log active_mech
-      drawPlayers()
-      drawPlayerForces()
-      drawMech()
-      
-      $('[data-name="'+active_mech.name+'"]').addClass 'active'
