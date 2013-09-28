@@ -1,0 +1,10 @@
+ul
+  - console.log('rendering players', players);
+  for player in players
+    - console.log(player, active_player);
+    li(class = player == active_player ? 'active': 'inactive')
+      .name!= player.name
+      .remove x
+.new
+  input(required=true, name='name')
+  button +

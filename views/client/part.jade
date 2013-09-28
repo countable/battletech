@@ -1,0 +1,16 @@
+div.part(class=name + (structure < 1 ? ' destroyed' : ''))
+
+  .armor-wrapper
+    - for (var i=0; i<armor; i++)
+      if i < armor_remaining
+        .hp-full
+      else
+        .hp-empty
+
+  if structure
+    .structure-wrapper
+      - for (var i=0; i<structure; i++)
+        if i < structure_remaining
+          .hp-full
+        else
+          .hp-empty

@@ -1,0 +1,69 @@
+
+
+extends layout
+
+block content
+  link(rel="stylesheet", href="stylesheets/index.css")
+
+  .container
+    
+    .players
+    
+    .mechs
+    
+    .parts
+
+    .weapons
+      .sides
+        span.side LEFT 
+        span.side.active CENTER 
+        span.side RIGHT 
+        span.side REAR
+
+      .energy.weapon-type
+        h4 Energy
+      .ballistic.weapon-type
+        h4 Ballistic
+      .missile.weapon-type
+        h4 Missile
+      .close.weapon-type
+        h4 Close Combat
+
+      button.fire FIRE
+  .clearfix
+  footer
+    | Concept by Channing Guenther; Programmed by 
+    a(href="http://countable.ca", target="_blank") Clark Van Oyen
+  
+  // Libraries
+  script(src="/bower_components/jquery/jquery.js")
+  script(src="/bower_components/underscore/underscore.js")
+  script(src="/socket.io/socket.io.js")
+  script(src="/bone.io/bone.io.js")
+  :coffeescript
+    # Forgot to download underscore before going on the airplane - just write the parts I'm using here:
+    ###
+    window._=
+      findWhere: (objs, condition)->
+        check = (item)->
+          for k,v of condition
+            if item[k] isnt v
+              return false
+          return true
+        return (o for o in objs when check(o))[0]
+    ###
+
+  // JadeAsset with JST exposed in Templates namespace.
+  script(src="/templates.js")
+  
+  // Application Code
+  script(src="/javascripts/data/data.js")
+  script(src="/javascripts/data/mechs.js")
+  script(src="/javascripts/data/light-mechs.js")
+  script(src="/javascripts/data/medium-mechs.js")
+  script(src="/javascripts/data/heavy-mechs.js")
+  script(src="/javascripts/data/assault-mechs.js")
+  script(src="/javascripts/data/structure.js")
+  script(src="/javascripts/game.js")
+  script(src="/javascripts/views.js")
+  script(src="/javascripts/routes.js")

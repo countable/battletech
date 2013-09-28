@@ -1,0 +1,80 @@
+extends layout
+
+
+block content
+  
+  #render
+    .players
+      b.name
+    .players
+      b.name
+  
+    .players
+      .mechs
+        .name
+
+  :coffeescript
+    
+    depth = 0
+    print = ->
+      x = depth
+      s = ''
+      while x
+        x -= 1
+        s += '-> '
+      console.log s,arguments
+
+    walkDOM = (node, data) ->
+      depth += 1
+      return unless data?
+
+      match = data[node.className]
+      
+      print node, data, typeof match
+      
+      if typeof match is 'string'
+        node.innerText = match
+        return
+      else if match instanceof Array
+        for item in match
+          dupNode = node.cloneNode true
+          node.parentNode.insertBefore dupNode, node
+          walkDOM dupNode, item
+          depth -= 1
+      else if typeof match is 'object'
+        data = match
+
+      node = node.firstChild
+      while node
+        walkDOM node, data
+        depth -= 1
+        node = node.nextSibling
+
+    data = players:[
+          name: 'Clark'
+          mechs: [
+              name: 'Bruno'
+              type: 'LOCUST'
+            ,
+              name: 'Mars'
+              type: 'TITAN'
+            ,
+              name: 'Beth'
+              type: 'HERCULES'
+          ]
+        ,
+          name: 'Channing'
+          description: "copied Clark's mechs"
+          mechs: [
+              name: 'Bruno 2'
+              type: 'LOCUST'
+            ,
+              name: 'Mars 2'
+              type: 'TITAN'
+            ,
+              name: 'Beth 2'
+              type: 'HERCULES'
+          ]
+      ]
+
+    walkDOM document.querySelector('#render'), data

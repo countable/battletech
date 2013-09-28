@@ -1,0 +1,82 @@
+extends layout
+
+block content
+  
+  script(src="/bower_components/jquery/jquery.js")
+
+
+  :stylus
+    .each
+      display none
+    .drawn
+      display block
+    ul
+      list-style none
+      li
+        float left
+        position relative
+      .remove
+        position absolute
+        top 0
+        right 0
+        font-size 2em
+        cursor pointer
+
+    .picker li.Player
+      width 200px
+      margin-right 40px
+      padding 10px
+      background-color #ccc
+
+  h1= Mechs
+
+  ul.picker
+    li.Player.each
+      .name
+      .remove &times;
+    li
+      form.Player.edit
+        input(type='text', name='name')
+        button(type='submit') add player
+  
+  .clearfix
+
+  .sheets
+
+    ul
+      li.Player.each.multiplex
+        h2.name
+
+        ul.picker
+          li.mechs.inline.each
+            .name
+            .remove &times;
+          li
+            .Mech.edit.inline
+              input(type='text', name='name')
+              select(name='type', name='type')
+                option(value='locust') Locust
+              button(type='submit') add player
+
+  script(src="/javascripts/js.js")
+
+  :coffeescript
+    class Player extends Type
+      @has 'Mech'
+      @define()
+
+    class Mech extends Type
+      @define()
+
+    $('.picker').on 'click', '.Player.each .name', ->
+      $tgt = $(@).parents('.each')
+      window.location.hash = $tgt.data('item').name
+
+    route = ->
+      locs = window.location.hash[1..].split '/'
+      TYPES.Player.active_item = TYPES.Player.findOne 'name', locs[0]
+      TYPES.Player.render()
+      #TYPES.Mechs.multiplex TYPES.Mechs.findOne 'name', locs[0]
+
+    $(window).bind 'hashchange', route
+    route()
