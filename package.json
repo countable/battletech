@@ -10,6 +10,8 @@
     "jade": "*",
     "stylus": "~0.36.0",
     "coffee-script": "~1.6.3",
-    "asset-rack": "~2.2.1"
+    "asset-rack": "~2.2.1",
+    "bone.io": "~0.8.9",
+    "socket.io": "~0.9.16"
   }
 }
