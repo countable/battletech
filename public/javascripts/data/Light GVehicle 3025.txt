@@ -1,0 +1,342 @@
+	##If Turret = 1, then the vehicle has a turret.##
+	##If Hover = 1, then the vehicle is a hovercraft. If = 0, then the vehicle is either Tracked or Wheeled.##
+	##If Track = 0, then the vehicle is tracked. If = 0, and Hover = 1 then the vehicle is Hover. If Track = 0 and Hover = 0 then the vehicle is Wheeled.##
+
+class SCOLTECK PATHTRACK DRONE extends GVehicle
+    name: "SCOLTECK PATHTRACK DRONE"
+	GV_TONNAGE: 3
+	CRUISE: 8
+	FLANK: 12
+	JUMP: 0
+	TURRET: 0
+	HOVER: 0
+	TRACK: 1
+    HEAT SINKS: 0
+	WEAPONS:	
+	SPECIAL:
+	AMMO:
+	
+	GV_ARMOR_FR: 2
+	GV_ARMOR_RT: 2
+	GV_ARMOR_LF: 2
+	GV_ARMOR_RR: 2
+	GV_ARMOR_TU: 0
+	
+class SCOLTECK NAPFIND DRONE extends GVehicle
+    name: "SCOLTECK NAPFIND DRONE"
+	GV_TONNAGE: 2
+	CRUISE: 25
+	FLANK: 38
+	JUMP: 0
+	TURRET: 0
+	HOVER: 1
+	TRACK: 0
+    HEAT SINKS: 0
+	WEAPONS:	
+	SPECIAL:
+	AMMO:
+	
+	GV_ARMOR_FR: 0
+	GV_ARMOR_RT: 0
+	GV_ARMOR_LF: 0
+	GV_ARMOR_RR: 0
+	GV_ARMOR_TU: 0
+	
+class SAVANAH MASTER extends GVehicle
+    name: "SAVANAH MASTER"
+	GV_TONNAGE: 5
+	CRUISE: 13
+	FLANK: 20
+	JUMP: 0
+	TURRET: 0
+	HOVER: 1
+	TRACK: 0
+    HEAT SINKS: 10
+	WEAPONS: 	'Medium Laser' FR
+	SPECIAL:
+	AMMO:
+	
+	GV_ARMOR_FR: 10
+	GV_ARMOR_RT: 6
+	GV_ARMOR_LF: 6
+	GV_ARMOR_RR: 2
+	GV_ARMOR_TU: 0
+	
+class WHEELED APC extends GVehicle
+    name: "WHEELED APC"
+	GV_TONNAGE: 10
+	CRUISE: 6
+	FLANK: 9
+	JUMP: 0
+	TURRET: 1
+	HOVER: 0
+	TRACK: 0
+    HEAT SINKS: 0
+	WEAPONS: 	'Machine Gun' TU
+				'Machine Gun' TU
+	SPECIAL: 	'Can carry 7 Inf'			
+	AMMO:		MG (200)
+
+	GV_ARMOR_FR: 12
+	GV_ARMOR_RT: 10
+	GV_ARMOR_LF: 10
+	GV_ARMOR_RR: 10
+	GV_ARMOR_TU: 6
+	
+class TRACKED APC extends GVehicle
+    name: "TRACKED APC"
+	GV_TONNAGE: 10
+	CRUISE: 6
+	FLANK: 9
+	JUMP: 0
+	TURRET: 1
+	HOVER: 0
+	TRACK: 1
+    HEAT SINKS: 0
+	WEAPONS: 	'Machine Gun' TU
+	SPECIAL: 	'Can carry 7 Inf'			
+	AMMO:		MG (200)
+
+	GV_ARMOR_FR: 10
+	GV_ARMOR_RT: 8
+	GV_ARMOR_LF: 8
+	GV_ARMOR_RR: 10
+	GV_ARMOR_TU: 4	
+
+class HOVER APC extends GVehicle
+    name: "HOVER APC"
+	GV_TONNAGE: 10
+	CRUISE: 10
+	FLANK: 15
+	JUMP: 0
+	TURRET: 1
+	HOVER: 1
+	TRACK: 0
+    HEAT SINKS: 0
+	WEAPONS: 	'Machine Gun' TU
+				'Machine Gun' TU
+	SPECIAL: 	'Can carry 7 Inf'			
+	AMMO:		MG (100)
+
+	GV_ARMOR_FR: 5
+	GV_ARMOR_RT: 5
+	GV_ARMOR_LF: 5
+	GV_ARMOR_RR: 4
+	GV_ARMOR_TU: 5
+	
+class SKULKER WHEELED SCOUT TANK extends GVehicle
+    name: "SKULKER WHEELED SCOUT TANK"
+	GV_TONNAGE: 20
+	CRUISE: 7
+	FLANK: 11
+	JUMP: 0
+	TURRET: 0
+	HOVER: 0
+	TRACK: 0
+    HEAT SINKS: 3
+	WEAPONS: 	'Medium Laser' FR
+	SPECIAL:			
+	AMMO:
+
+	GV_ARMOR_FR: 18
+	GV_ARMOR_RT: 18
+	GV_ARMOR_LF: 18
+	GV_ARMOR_RR: 18
+	GV_ARMOR_TU: 0
+	
+class HARASSER MISSLE PLATFORM extends GVehicle
+    name: "HARASSER MISSLE PLATFORM"
+	GV_TONNAGE: 25
+	CRUISE: 10
+	FLANK: 15
+	JUMP: 0
+	TURRET: 1
+	HOVER: 1
+	TRACK: 0
+    HEAT SINKS: 0
+	WEAPONS: 	'SRM 6' TU
+				'SRM 6' TU
+	SPECIAL: 				
+	AMMO:		SRM 6 (30)
+
+	GV_ARMOR_FR: 7
+	GV_ARMOR_RT: 6
+	GV_ARMOR_LF: 6
+	GV_ARMOR_RR: 7
+	GV_ARMOR_TU: 6
+	
+class J.EDGAR LIGHT HOVER TANK extends GVehicle
+    name: "J.EDGAR LIGHT HOVER TANK"
+	GV_TONNAGE: 25
+	CRUISE: 11
+	FLANK: 17
+	JUMP: 0
+	TURRET: 1
+	HOVER: 1
+	TRACK: 0
+    HEAT SINKS: 10
+	WEAPONS: 	'SRM 2' TU
+				'SRM 2' TU
+				'Medium Laser'
+	SPECIAL: 				
+	AMMO:		SRM 2(50)
+
+	GV_ARMOR_FR: 30
+	GV_ARMOR_RT: 19
+	GV_ARMOR_LF: 19
+	GV_ARMOR_RR: 12
+	GV_ARMOR_TU: 24
+	
+class SCORPION LIGHT TANK extends GVehicle
+    name: "SCORPION LIGHT TANK"
+	GV_TONNAGE: 25
+	CRUISE: 4
+	FLANK: 6
+	JUMP: 0
+	TURRET: 1
+	HOVER: 0
+	TRACK: 1
+    HEAT SINKS: 0
+	WEAPONS: 	'AC/5' TU
+				'Machine Gun' FR
+	SPECIAL: 				
+	AMMO:		AC/5(20)
+				MG (100)
+
+	GV_ARMOR_FR: 16
+	GV_ARMOR_RT: 11
+	GV_ARMOR_LF: 11
+	GV_ARMOR_RR: 10
+	GV_ARMOR_TU: 16	
+
+class HUNTER LIGHT SUPPORT TANK extends GVehicle
+    name: "HUNTER LIGHT SUPPORT TANK"
+	GV_TONNAGE: 35
+	CRUISE: 5
+	FLANK: 8
+	JUMP: 0
+	TURRET: 0
+	HOVER: 0
+	TRACK: 1
+    HEAT SINKS: 10
+	WEAPONS: 	'LRM 20' FR
+				'FLAMER' RR
+	SPECIAL: 				
+	AMMO:		LRM 20(12)
+
+	GV_ARMOR_FR: 32
+	GV_ARMOR_RT: 24
+	GV_ARMOR_LF: 24
+	GV_ARMOR_RR: 16
+	GV_ARMOR_TU: 0
+
+class PEGASUS SCOUT HOVER TANK extends GVehicle
+    name: "PEGASUS SCOUT HOVER TANK"
+	GV_TONNAGE: 35
+	CRUISE: 6
+	FLANK: 12
+	JUMP: 0
+	TURRET: 1
+	HOVER: 1
+	TRACK: 0
+    HEAT SINKS: 3
+	WEAPONS: 	'SRM 6' TU
+				'SRM 6' TU
+				'Medium Laser' FR
+	SPECIAL: 				
+	AMMO:		SRM 6 (15)
+
+	GV_ARMOR_FR: 26
+	GV_ARMOR_RT: 19
+	GV_ARMOR_LF: 19
+	GV_ARMOR_RR: 19
+	GV_ARMOR_TU: 21
+
+class SALADIN ASSAULT HOVER TANK extends GVehicle
+    name: "SALADIN ASSAULT HOVER TANK"
+	GV_TONNAGE: 35
+	CRUISE: 8
+	FLANK: 12
+	JUMP: 0
+	TURRET: 0
+	HOVER: 1
+	TRACK: 0
+    HEAT SINKS: 0
+	WEAPONS: 	'AC/20' FR
+	SPECIAL: 				
+	AMMO:		AC/20(15)
+
+	GV_ARMOR_FR: 17
+	GV_ARMOR_RT: 5
+	GV_ARMOR_LF: 5
+	GV_ARMOR_RR: 5
+	GV_ARMOR_TU: 0
+	
+class SARACEN MEDIUM HOVER TANK extends GVehicle
+    name: "SARACEN MEDIUM HOVER TANK"
+	GV_TONNAGE: 35
+	CRUISE: 8
+	FLANK: 12
+	JUMP: 0
+	TURRET: 1
+	HOVER: 1
+	TRACK: 0
+    HEAT SINKS: 0
+	WEAPONS: 	'LRM 10' TU
+				'SRM2' TU
+				'SRM2' TU
+				'SRM2' TU
+	SPECIAL: 				
+	AMMO:		SRM 2 (50)
+				LRM 10 (24)
+
+	GV_ARMOR_FR: 24
+	GV_ARMOR_RT: 20
+	GV_ARMOR_LF: 20
+	GV_ARMOR_RR: 24
+	GV_ARMOR_TU: 24
+	
+class SCIMITAR MEDIUM HOVER TANK extends GVehicle
+    name: "SCIMITAR MEDIUM HOVER TANK"
+	GV_TONNAGE: 35
+	CRUISE: 8
+	FLANK: 12
+	JUMP: 0
+	TURRET: 1
+	HOVER: 1
+	TRACK: 0
+    HEAT SINKS: 0
+	WEAPONS: 	'AC/5' TU
+				'SRM2' TU
+				'SRM2' TU
+	SPECIAL: 				
+	AMMO:		SRM 2 (50)
+				AC/5 (20)
+
+	GV_ARMOR_FR: 21
+	GV_ARMOR_RT: 18
+	GV_ARMOR_LF: 18
+	GV_ARMOR_RR: 18
+	GV_ARMOR_TU: 21
+	
+class STRIKER LIGHT TANK extends GVehicle
+    name: "STRIKER LIGHT TANK"
+	GV_TONNAGE: 35
+	CRUISE: 5
+	FLANK: 8
+	JUMP: 0
+	TURRET: 1
+	HOVER: 0
+	TRACK: 0
+    HEAT SINKS: 0
+	WEAPONS: 	'SRM6' TU
+				'LRM10' TU
+	SPECIAL: 				
+	AMMO:		SRM 6 (30)
+				LRM 10 (12)
+
+	GV_ARMOR_FR: 24
+	GV_ARMOR_RT: 20
+	GV_ARMOR_LF: 20
+	GV_ARMOR_RR: 18
+	GV_ARMOR_TU: 22

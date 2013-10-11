@@ -14,6 +14,35 @@ window.drawMech = ->
       armor_remaining: active_mech['armor_'+part]
       structure_remaining: active_mech['structure_'+part]
     $('.parts').append Templates.part context
+  
+  $('.crits').empty().show()
+
+  bodyparts = {}
+
+  for slot in active_mech.getCriticalSlots()
+
+    tokens = slot.slot.split '_'
+
+    partname = tokens[1..tokens.length-2].join(' ')
+    
+    bodyparts[partname] ?= []
+    bodyparts[partname].push
+      item: slot.item
+      position: tokens[tokens.length-1] * 1
+  
+  for partname, slots of bodyparts
+    slots = slots.sort (a,b)->
+      a.position - b.position
+    
+    console.log slots
+
+    $('.crits').append("""
+      <h3>#{partname}</h3>
+    """)
+    for slot in slots
+      $('.crits').append("""
+        <div>#{slot.position}. #{slot.item}</div>
+      """)
 
 
 # Bone.io Library Settings

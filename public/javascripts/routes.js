@@ -9,9 +9,8 @@
   };
 
   window.drawMech = function() {
-    var context, part, part_info, _results;
+    var bodyparts, context, part, part_info, partname, slot, slots, tokens, _i, _len, _ref, _results;
     $('.parts').empty().show();
-    _results = [];
     for (part in PARTS) {
       part_info = PARTS[part];
       context = {
@@ -21,7 +20,40 @@
         armor_remaining: active_mech['armor_' + part],
         structure_remaining: active_mech['structure_' + part]
       };
-      _results.push($('.parts').append(Templates.part(context)));
+      $('.parts').append(Templates.part(context));
+    }
+    $('.crits').empty().show();
+    bodyparts = {};
+    _ref = active_mech.getCriticalSlots();
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      slot = _ref[_i];
+      tokens = slot.slot.split('_');
+      partname = tokens.slice(1, +(tokens.length - 2) + 1 || 9e9).join(' ');
+      if (bodyparts[partname] == null) {
+        bodyparts[partname] = [];
+      }
+      bodyparts[partname].push({
+        item: slot.item,
+        position: tokens[tokens.length - 1] * 1
+      });
+    }
+    _results = [];
+    for (partname in bodyparts) {
+      slots = bodyparts[partname];
+      slots = slots.sort(function(a, b) {
+        return a.position - b.position;
+      });
+      console.log(slots);
+      $('.crits').append("<h3>" + partname + "</h3>");
+      _results.push((function() {
+        var _j, _len1, _results1;
+        _results1 = [];
+        for (_j = 0, _len1 = slots.length; _j < _len1; _j++) {
+          slot = slots[_j];
+          _results1.push($('.crits').append("<div>" + slot.position + ". " + slot.item + "</div>"));
+        }
+        return _results1;
+      })());
     }
     return _results;
   };

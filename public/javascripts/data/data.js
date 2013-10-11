@@ -59,7 +59,7 @@
       damage: 2,
       type: 'ballistic'
     }, {
-      name: "MachineGun",
+      name: "Machine Gun",
       heat: 0,
       damage: 2,
       type: 'ballistic'
@@ -167,7 +167,7 @@
       '12': 'HEAD'
     },
     REAR: {
-      '2': 'CENTER_TORSO',
+      '2': 'CENTER_TORSO_REAR',
       '3': 'RIGHT_ARM',
       '4': 'RIGHT_ARM',
       '5': 'RIGHT_LEG',
@@ -253,32 +253,38 @@
 
   NS.PARTS = {
     LEFT_ARM: {
-      flows_to: 'LEFT_TORSO'
+      damage_flows_to: 'LEFT_TORSO'
     },
     RIGHT_ARM: {
-      flows_to: 'RIGHT_TORSO'
+      damage_flows_to: 'RIGHT_TORSO'
     },
     LEFT_LEG: {
-      flows_to: "LEFT_TORSO"
+      damage_flows_to: "LEFT_TORSO"
     },
     RIGHT_LEG: {
-      flows_to: "RIGHT_TORSO"
+      damage_flows_to: "RIGHT_TORSO"
     },
     RIGHT_TORSO: {
-      flows_to: "CENTER_TORSO"
+      damage_flows_to: "CENTER_TORSO",
+      destroy_applies_to: "RIGHT_ARM"
     },
     LEFT_TORSO: {
-      flows_to: "CENTER_TORSO"
+      damage_flows_to: "CENTER_TORSO",
+      destroy_applies_to: "LEFT_ARM"
     },
     HEAD: {
-      flows_to: "DEATH"
+      damage_flows_to: "DEATH"
     },
     CENTER_TORSO: {
-      flows_to: "DEATH"
+      damage_flows_to: "DEATH"
     },
-    LEFT_TORSO_REAR: {},
-    CENTER_TORSO_REAR: {},
-    RIGHT_TORSO_REAR: {}
+    LEFT_TORSO_REAR: {
+      damage_flows_to: "CENTER_TORSO_REAR"
+    },
+    RIGHT_TORSO_REAR: {
+      damage_flows_to: "CENTER_TORSO_REAR"
+    },
+    CENTER_TORSO_REAR: {}
   };
 
   NS.MISSILE_HITS_COLUMNS = {

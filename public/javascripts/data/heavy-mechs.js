@@ -1405,6 +1405,6 @@
       return _Class;
 
     })(ORION);
-  })(window.MECHS);
+  }).apply(window.MECHS);
 
 }).call(this);

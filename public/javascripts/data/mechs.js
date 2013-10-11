@@ -32,7 +32,41 @@
 
       Mech.prototype.CRIT_RIGHT_ARM_2 = 'Upper Arm Actuator';
 
-      Mech.prototype.CRIT_TORSO_1 = 'Engine';
+      Mech.prototype.CRIT_CENTER_TORSO_1 = 'Engine';
+
+      Mech.prototype.CRIT_CENTER_TORSO_2 = 'Engine';
+
+      Mech.prototype.CRIT_CENTER_TORSO_3 = 'Engine';
+
+      Mech.prototype.CRIT_CENTER_TORSO_4 = 'Gyro';
+
+      Mech.prototype.CRIT_CENTER_TORSO_5 = 'Gyro';
+
+      Mech.prototype.CRIT_CENTER_TORSO_6 = 'Gyro';
+
+      Mech.prototype.CRIT_CENTER_TORSO_7 = 'Gyro';
+
+      Mech.prototype.CRIT_CENTER_TORSO_8 = 'Engine';
+
+      Mech.prototype.CRIT_CENTER_TORSO_9 = 'Engine';
+
+      Mech.prototype.CRIT_CENTER_TORSO_10 = 'Engine';
+
+      Mech.prototype.CRIT_LEFT_LEG_1 = 'Hip';
+
+      Mech.prototype.CRIT_LEFT_LEG_2 = 'Upper Leg Actuator';
+
+      Mech.prototype.CRIT_LEFT_LEG_3 = 'Lower Leg Actuator';
+
+      Mech.prototype.CRIT_LEFT_LEG_4 = 'Foot Actuator';
+
+      Mech.prototype.CRIT_RIGHT_LEG_1 = 'Hip';
+
+      Mech.prototype.CRIT_RIGHT_LEG_2 = 'Upper Leg Actuator';
+
+      Mech.prototype.CRIT_RIGHT_LEG_3 = 'Lower Leg Actuator';
+
+      Mech.prototype.CRIT_RIGHT_LEG_4 = 'Foot Actuator';
 
       Mech.prototype.getWeightClass = function() {
         if (this.TONNAGE <= 35) {
@@ -47,6 +81,21 @@
         if (this.TONNAGE >= 80) {
           return 'ASSAULT';
         }
+      };
+
+      Mech.prototype.getCriticalSlots = function() {
+        var k, slots, v;
+        slots = [];
+        for (k in this) {
+          v = this[k];
+          if (k.indexOf('CRIT') > -1) {
+            slots.push({
+              slot: k,
+              item: v
+            });
+          }
+        }
+        return slots;
       };
 
       function Mech(base) {

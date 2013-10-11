@@ -1,5 +1,5 @@
 (->
-    class AWESOME extends Mech
+    class AWESOME extends Mech # Abstract
         TONNAGE: 80
         WALK: 3
         RUN: 5
@@ -585,4 +585,4 @@
         
         CRIT_HEAD_4: 'Heat Sink'
         
-) window.MECHS
+).apply window.MECHS

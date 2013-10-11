@@ -122,6 +122,11 @@ select {
 .mechs .new input {
   width: 150px;
 }
+.crits {
+  float: left;
+  width: 300px;
+  height: 410px;
+}
 .parts {
   background: url("/images/mech.png") no-repeat;
   position: relative;
