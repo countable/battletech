@@ -43,20 +43,8 @@ block content
   // Libraries
   script(src="/bower_components/jquery/jquery.js")
   script(src="/bower_components/underscore/underscore.js")
-  script(src="/socket.io/socket.io.js")
-  script(src="/bone.io/bone.io.js")
-  :coffeescript
-    # Forgot to download underscore before going on the airplane - just write the parts I'm using here:
-    ###
-    window._=
-      findWhere: (objs, condition)->
-        check = (item)->
-          for k,v of condition
-            if item[k] isnt v
-              return false
-          return true
-        return (o for o in objs when check(o))[0]
-    ###
+  //script(src="/socket.io/socket.io.js")
+  //script(src="/bone.io/bone.io.js")
 
   // JadeAsset with JST exposed in Templates namespace.
   script(src="/templates.js")

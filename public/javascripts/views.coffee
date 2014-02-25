@@ -1,14 +1,15 @@
-###
-view = ->
-  name = arguments[1].name
 
-  arguments[1].render = ->
-    context = {}
-    context[@name] = @
-    @$el.html Templates[@name] context
+view = (root, opts) ->
   
-  bone.view[name] = bone.view.apply bone, arguments
-###
+  for ev_spec,handler of opts.events
+    ev_spec = ev_spec.split ' '
+    ev_type = ev_spec[0]
+    selector = ev_spec[1...].join(' ')
+    console.log ev_type, root+' '+selector
+    $().on ev_type, root+' '+selector, opts[handler]
+  
+
+
 
 $.fn.item = ->
   node = @
@@ -28,7 +29,7 @@ goto = (location)->
 
 
 # Pick a player.
-Player = bone.view '.players',
+view '.players',
 
   events:
     'click .new button': 'new'
@@ -59,7 +60,7 @@ Player = bone.view '.players',
 
 
 # Select mech to fire on.
-bone.view '.mechs',
+view '.mechs',
 
   events:
     'click li .name': 'pick'
@@ -88,7 +89,7 @@ bone.view '.mechs',
 
 
 # Pick weapons
-bone.view '.weapons',
+view '.weapons',
 
   events:
     'click .side': 'side'
