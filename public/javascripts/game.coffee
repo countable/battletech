@@ -41,7 +41,6 @@ destroy = ->
   active_mech.destroyed = true
   alert "DESTROYED!!!"
 
-
 _da_phase = {}
 damage_animation = ($part, damage, critical = '')->
   loc = $part.offset()

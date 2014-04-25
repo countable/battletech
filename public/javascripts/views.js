@@ -162,4 +162,14 @@ view = ->
     }
   });
 
+  bone.view('.part', {
+    events: {
+      'click .repair-manual': 'repair',
+      'click .damage-manual': 'damage'
+    },
+    repair: function() {
+      return console.log('repair manual');
+    }
+  });
+
 }).call(this);

@@ -122,3 +122,15 @@ bone.view '.weapons',
 
     $('.count').text(0)
     drawMech()
+
+
+bone.view '.part',
+  
+  events:
+    'click .repair-manual': 'repair'
+    'click .damage-manual': 'damage'
+
+  repair: ->
+
+    console.log 'repair manual'
+
