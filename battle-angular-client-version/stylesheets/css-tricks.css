@@ -1,0 +1,378 @@
+
+/* apply a natural box layout model to all elements */
+*, *:before, *:after {
+  -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+ }
+
+/* Tucked Corners 
+
+<div class="corners">
+   Content
+</div>
+
+*/
+
+.corners { 
+    background: #f6f6f6;
+    height: 700px;
+    margin: 50px auto;
+    max-width: 600px;
+    position: relative;
+    width: 80%;
+    -webkit-box-shadow: 0 1px 7px hsla(0,0%,0%,.2);
+       -moz-box-shadow: 0 1px 7px hsla(0,0%,0%,.2);
+            box-shadow: 0 1px 7px hsla(0,0%,0%,.2);
+}
+/* Corner Effect */
+.corners:after,
+.corners:before {
+    background: #e6e6e6;
+    content: '';
+    height: 50px;
+    position: absolute;
+    top: -25px;
+    width: 100px;
+    -webkit-box-shadow: 0 5px 10px -7px hsla(0,0%,0%,.5);
+       -moz-box-shadow: 0 5px 10px -7px hsla(0,0%,0%,.5);
+            box-shadow: 0 5px 10px -7px hsla(0,0%,0%,.5);
+}
+.corners:after {
+    left: -50px;
+    -webkit-transform: rotate(-45deg);
+       -moz-transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg);
+         -o-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+}
+.corners:before {
+    right: -50px;
+    -webkit-transform: rotate(45deg);
+       -moz-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+         -o-transform: rotate(45deg);
+            transform: rotate(45deg);
+}
+
+/* Top Shadow on body element
+
+<body class="top-shadow"></body>
+
+/*
+
+body.top-shadow:before {
+          content: "";
+          position: fixed;
+          top: -10px;
+          left: 0;
+          width: 100%;
+          height: 10px;
+
+          -webkit-box-shadow: 0px 0px 10px rgba(0,0,0,.8);
+              -moz-box-shadow: 0px 0px 10px rgba(0,0,0,.8);
+                         box-shadow: 0px 0px 10px rgba(0,0,0,.8);
+
+          z-index: 100;
+}
+
+/* Quoted blockquotes
+  
+<blockquote class="quoted"><p> Content </p></blockquote>
+  
+*/
+
+blockquote.quoted {
+  background:#f9f9f9;
+  border-left:10px solid #ccc;
+  margin:1.5em 10px;
+  padding:.5em 10px;
+  quotes:"\201C""\201D""\2018""\2019";
+
+  /* nice wrap behaviour (wrap long words) */
+  -ms-word-break: break-all;
+     word-break: break-all;
+
+     /* Non standard for webkit */
+     word-break: break-word;
+
+  -webkit-hyphens: auto;
+     -moz-hyphens: auto;
+          hyphens: auto;
+}
+blockquote.quoted:before {
+  color:#ccc;
+  content:open-quote;
+  font-size:4em;
+  line-height:.1em;
+  margin-right:.25em;
+  vertical-align:-.4em;
+}
+blockquote.quoted p {
+  display:inline;
+}
+
+/* Ribbon
+
+<h1 class="ribbon">
+   <strong class="ribbon-content">Everybody loves ribbons</strong>
+</h1>
+
+*/
+
+.ribbon {
+ font-size: 16px !important;
+ /* This ribbon is based on a 16px font side and a 24px vertical rhythm. I've used em's to position each element for scalability. If you want to use a different font size you may have to play with the position of the ribbon elements */
+
+ width: 50%;
+    
+ position: relative;
+ background: #ba89b6;
+ color: #fff;
+ text-align: center;
+ padding: 1em 2em; /* Adjust to suit */
+ margin: 2em auto 3em; /* Based on 24px vertical rhythm. 48px bottom margin - normally 24 but the ribbon 'graphics' take up 24px themselves so we double it. */
+}
+.ribbon:before, .ribbon:after {
+ content: "";
+ position: absolute;
+ display: block;
+ bottom: -1em;
+ border: 1.5em solid #986794;
+ z-index: -1;
+}
+.ribbon:before {
+ left: -2em;
+ border-right-width: 1.5em;
+ border-left-color: transparent;
+}
+.ribbon:after {
+ right: -2em;
+ border-left-width: 1.5em;
+ border-right-color: transparent;
+}
+.ribbon .ribbon-content:before, .ribbon .ribbon-content:after {
+ content: "";
+ position: absolute;
+ display: block;
+ border-style: solid;
+ border-color: #804f7c transparent transparent transparent;
+ bottom: -1em;
+}
+.ribbon .ribbon-content:before {
+ left: 0;
+ border-width: 1em 0 0 1em;
+}
+.ribbon .ribbon-content:after {
+ right: 0;
+ border-width: 1em 1em 0 0;
+}
+
+/* page curl shadows 
+
+<ul class="page-curl">
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+</ul>
+
+*/
+
+ul.page-curl {
+  position: relative;
+  z-index: 1; /* prevent shadows falling behind containers with backgrounds */
+  overflow: hidden;
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+
+ul.page-curl li {
+  position: relative;
+  float: left;
+  width: 250px;
+  height: 150px;
+  padding: 0;
+  border: 1px solid #efefef;
+  margin: 0 30px 30px 0;
+  background: #fff;
+  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
+  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset; 
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset; }
+
+ul.page-curl li:before,
+ul.page-curl li:after {
+  content: '';
+  z-index: -1;
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  width: 70%;
+  max-width: 300px; /* avoid rotation causing ugly appearance at large container widths */
+  max-height: 100px;
+  height: 55%;
+  -webkit-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  -webkit-transform: skew(-15deg) rotate(-6deg);
+  -moz-transform: skew(-15deg) rotate(-6deg);
+  -ms-transform: skew(-15deg) rotate(-6deg);
+  -o-transform: skew(-15deg) rotate(-6deg);
+  transform: skew(-15deg) rotate(-6deg); }
+
+ul.page-curl li:after {
+  left: auto;
+  right: 10px;
+  -webkit-transform: skew(15deg) rotate(6deg);
+  -moz-transform: skew(15deg) rotate(6deg);
+  -ms-transform: skew(15deg) rotate(6deg);
+  -o-transform: skew(15deg) rotate(6deg);
+  transform: skew(15deg) rotate(6deg); }
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* CSS Arrows 
+
+<div class="arrow-up" style="border-width: 5px; border-color:red"></div>
+<div class="arrow-down" style="border-width: 5px; border-color:red"></div>
+<div class="arrow-left" style="border-width: 5px; border-color:red"></div>
+<div class="arrow-right" style="border-width: 5px; border-color:red"></div>
+
+*/
+
+.arrow-up, .arrow-down, .arrow-right, .arrow-left {
+  width: 0; 
+  height: 0; 
+  border-width: 10px;
+  border-color: black;
+  border-style: solid;
+}
+
+.arrow-up {
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+}
+
+.arrow-down {
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-top-color: transparent;
+}
+
+.arrow-right {
+  border-left-color: transparent;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+}
+
+.arrow-left {
+  border-top-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+}
+
+/* Corner Ribbon
+
+<div class="ribbon-box">
+       <div class="ribbon-wrapper-green"><div class="ribbon-green">NEWS</div></div>
+</div>
+
+*/
+
+.ribbon-box {
+  margin: 50px auto;
+  width: 280px;
+  height: 370px;
+  background: white;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 0px 8px rgba(0,0,0,0.3);
+  -moz-box-shadow:    0px 0px 8px rgba(0,0,0,0.3);
+  box-shadow:         0px 0px 8px rgba(0,0,0,0.3);
+  position: relative;
+  z-index: 90;
+}
+
+.ribbon-wrapper-green {
+  width: 85px;
+  height: 88px;
+  overflow: hidden;
+  position: absolute;
+  top: -3px;
+  right: -3px;
+}
+
+.ribbon-green {
+  font: bold 15px Sans-Serif;
+  color: #333;
+  text-align: center;
+  text-shadow: rgba(255,255,255,0.5) 0px 1px 0px;
+  -webkit-transform: rotate(45deg);
+  -moz-transform:    rotate(45deg);
+  -ms-transform:     rotate(45deg);
+  -o-transform:      rotate(45deg);
+  position: relative;
+  padding: 7px 0;
+  left: -5px;
+  top: 15px;
+  width: 120px;
+  background-color: #BFDC7A;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#BFDC7A), to(#8EBF45)); 
+  background-image: -webkit-linear-gradient(top, #BFDC7A, #8EBF45); 
+  background-image:    -moz-linear-gradient(top, #BFDC7A, #8EBF45); 
+  background-image:     -ms-linear-gradient(top, #BFDC7A, #8EBF45); 
+  background-image:      -o-linear-gradient(top, #BFDC7A, #8EBF45); 
+  color: #6a6340;
+  -webkit-box-shadow: 0px 0px 3px rgba(0,0,0,0.3);
+  -moz-box-shadow:    0px 0px 3px rgba(0,0,0,0.3);
+  box-shadow:         0px 0px 3px rgba(0,0,0,0.3);
+}
+
+.ribbon-green:before, .ribbon-green:after {
+  content: "";
+  border-top:   3px solid #6e8900;   
+  border-left:  3px solid transparent;
+  border-right: 3px solid transparent;
+  position:absolute;
+  bottom: -3px;
+}
+
+.ribbon-green:before {
+  left: 0;
+}
+.ribbon-green:after {
+  right: 0;
+}
+
+/* Better helvetica */
+body.helvetica {
+   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+   font-weight: 300;
+}
+
+/* Blurry text
+<span class="blur">text</span>
+*/
+
+.blur {
+   color: transparent;
+   text-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+
+.clearfix:after {
+     visibility: hidden;
+     display: block;
+     font-size: 0;
+     content: " ";
+     clear: both;
+     height: 0;
+     }
+.clearfix { display: inline-block; }
+/* start commented backslash hack \*/
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
+/* close commented backslash hack */

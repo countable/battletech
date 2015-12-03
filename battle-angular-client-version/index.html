@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel='stylesheet' href='stylesheets/css-tricks.css'>
+  </head>
+  <body ng-app="battletechApp" ng-controller="battletechCtrl">
+
+    <link rel="stylesheet" href="stylesheets/index.css">
+
+    <div class="container">
+      
+      <div class="players">
+
+      </div> <!-- /.players -->
+      
+      <div class="mechs">
+
+      </div>
+      
+      <div class="parts">
+        <div ng-repeat="part in PARTS" ng-class="part.type">
+          {{part.type}}
+          <div class="armor-wrapper">
+            <ng-repeat="item in enum(part.armor)" class="hp-full"></div>
+          </div>
+
+         <div class="structure-wrapper">
+            <ng-repeat="item in enum(part.structure)" class="hp-full"></div>
+          </div>
+
+        </div>
+      </div> <!-- /.parts -->
+
+
+      <div class="weapons">
+
+        <div class="sides">
+          <span class="side"> LEFT </span>
+          <span class="side active"> CENTER </span>
+          <span class="side"> RIGHT </span>
+          <span class="side"> REAR </span>
+        </div>
+        
+        <div ng-repeat="type in WEAPON_TYPES" ng-class="type">
+          <h4>{{ type }}</h4>
+          <div class="weapon" ng-repeat="weapon in WEAPONS[type]">
+            <div class="name">{{weapon.name}}
+            <div class="damage">
+              <input type='text' name='damage' size=4>
+            </div>
+            <button class="add">
+              +
+            </button>
+            <button class="sub">
+              -
+            </button>
+            <div class="count">0</div>
+          </div>
+        </div>
+
+
+      </div> <!-- /.weapons -->
+      <button class="fire">FIRE</button>
+    </div> <!-- /.container -->
+    <div class="clearfix"></div>
+    
+    <script src="underscore.js"></script>
+    <script src="angular.js"></script>
+    <script src="javascripts/data/data.js"></script>
+    <script src="javascripts/data/mechs.js"></script>
+    <script src="javascripts/data/light-mechs.js"></script>
+    <script src="javascripts/data/medium-mechs.js"></script>
+    <script src="javascripts/data/heavy-mechs.js"></script>
+    <script src="javascripts/data/assault-mechs.js"></script>
+    <script src="javascripts/data/structure.js"></script>
+    <script src="javascripts/game.js"></script>
+    <script>
+
+var app = angular.module('battletechApp', [])
+
+app.controller('battletechCtrl', ['$scope', '$http', function($scope, $http) {
+
+  $scope.WEAPONS = WEAPONS
+  $scope.WEAPON_TYPES = Object.keys(WEAPONS)
+
+  $scope.enum = function(L){
+    var list = [];
+    for (var i=0;i<L;i++) list.push(1);
+    return list;
+  }
+  
+  $scope.PARTS = PARTS;
+
+
+}]);
+
+    </script>
+  </body>
+</html>
