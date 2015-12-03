@@ -1,2 +1,19 @@
 bower_components
+<<<<<<< HEAD
 node_modules
+=======
+lib-cov
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+node_modules
+pids
+logs
+results
+
+npm-debug.log
+>>>>>>> 438da4c963442fd141e19f9918d3e8a1d57c71f1

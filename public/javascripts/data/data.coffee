@@ -51,7 +51,11 @@ NS.WEAPONS = [
     damage: 2,
     type: 'ballistic'
   ,
+<<<<<<< HEAD
     name: "MachineGun",  
+=======
+    name: "Machine Gun",  
+>>>>>>> 438da4c963442fd141e19f9918d3e8a1d57c71f1
     heat:0,
     damage: 2,
     type: 'ballistic'
@@ -156,7 +160,11 @@ NS.RANGED_HIT_LOCATION =
     '11': 'LEFT_ARM'
     '12': 'HEAD'
   REAR:
+<<<<<<< HEAD
     '2': 'CENTER_TORSO'
+=======
+    '2': 'CENTER_TORSO_REAR'
+>>>>>>> 438da4c963442fd141e19f9918d3e8a1d57c71f1
     '3': 'RIGHT_ARM'
     '4': 'RIGHT_ARM'
     '5': 'RIGHT_LEG'
@@ -231,6 +239,7 @@ NS.KICK_HIT_LOCATION =
 # DAMAGE TRANSFER DIAGRAM
 NS.PARTS =
   LEFT_ARM:
+<<<<<<< HEAD
     flows_to: 'LEFT_TORSO'
   RIGHT_ARM:
     flows_to: 'RIGHT_TORSO'
@@ -249,6 +258,30 @@ NS.PARTS =
   LEFT_TORSO_REAR:{}
   CENTER_TORSO_REAR:{}
   RIGHT_TORSO_REAR:{}
+=======
+    damage_flows_to: 'LEFT_TORSO'
+  RIGHT_ARM:
+    damage_flows_to: 'RIGHT_TORSO'
+  LEFT_LEG:
+    damage_flows_to: "LEFT_TORSO"
+  RIGHT_LEG:
+    damage_flows_to: "RIGHT_TORSO"
+  RIGHT_TORSO:
+    damage_flows_to: "CENTER_TORSO"
+    destroy_applies_to: "RIGHT_ARM"
+  LEFT_TORSO:
+    damage_flows_to: "CENTER_TORSO"
+    destroy_applies_to: "LEFT_ARM"
+  HEAD:
+    damage_flows_to: "DEATH"
+  CENTER_TORSO:
+    damage_flows_to: "DEATH"
+  LEFT_TORSO_REAR:
+    damage_flows_to: "CENTER_TORSO_REAR"
+  RIGHT_TORSO_REAR:
+    damage_flows_to: "CENTER_TORSO_REAR"
+  CENTER_TORSO_REAR:{}
+>>>>>>> 438da4c963442fd141e19f9918d3e8a1d57c71f1
 
 NS.MISSILE_HITS_COLUMNS =
     2: 0 # SRM 2 = column 1

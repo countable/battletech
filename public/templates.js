@@ -184,8 +184,12 @@ jade.render = function(node, template, data) {
   node.innerHTML = tmp;
 };
 
+<<<<<<< HEAD
 jade.templates["mechs"] = function(locals, attrs, escape, rethrow, merge
 /**/) {
+=======
+jade.templates["mechs"] = function(locals, attrs, escape, rethrow, merge) {
+>>>>>>> 438da4c963442fd141e19f9918d3e8a1d57c71f1
 attrs = attrs || jade.attrs; escape = escape || jade.escape; rethrow = rethrow || jade.rethrow; merge = merge || jade.merge;
 var buf = [];
 with (locals || {}) {
@@ -197,9 +201,14 @@ buf.push('<ul>');
     for (var $index = 0, $$l = active_player.mechs.length; $index < $$l; $index++) {
       var mech = active_player.mechs[$index];
 
+<<<<<<< HEAD
  console.log(active_mech && active_mech.name, mech.name, (active_mech && (mech.name == active_mech.name)) ? 'active': 'inactive')
 buf.push('<li');
 buf.push(attrs({ "class": ((active_mech && (mech.name == active_mech.name)) ? 'active': 'inactive') }, {"class":true}));
+=======
+buf.push('<li');
+buf.push(attrs({ "class": (mech == active_mech ? 'active': 'inactive') }, {"class":true}));
+>>>>>>> 438da4c963442fd141e19f9918d3e8a1d57c71f1
 buf.push('><div class="name">');
 var __val__ = mech.name
 buf.push(null == __val__ ? "" : __val__);
@@ -212,9 +221,14 @@ buf.push('</div><div class="remove">x</div></li>');
     for (var $index in active_player.mechs) {
       var mech = active_player.mechs[$index];
 
+<<<<<<< HEAD
  console.log(active_mech && active_mech.name, mech.name, (active_mech && (mech.name == active_mech.name)) ? 'active': 'inactive')
 buf.push('<li');
 buf.push(attrs({ "class": ((active_mech && (mech.name == active_mech.name)) ? 'active': 'inactive') }, {"class":true}));
+=======
+buf.push('<li');
+buf.push(attrs({ "class": (mech == active_mech ? 'active': 'inactive') }, {"class":true}));
+>>>>>>> 438da4c963442fd141e19f9918d3e8a1d57c71f1
 buf.push('><div class="name">');
 var __val__ = mech.name
 buf.push(null == __val__ ? "" : __val__);
@@ -237,12 +251,20 @@ var __val__ = MECH.prototype.NAME
 buf.push(null == __val__ ? "" : __val__);
 buf.push('</option>');
 }
+<<<<<<< HEAD
 buf.push('</select><input name="name" placeholder="new mech"/><button>+</button></div>');
 }
 return buf.join("");
 }
 jade.templates["part"] = function(locals, attrs, escape, rethrow, merge
 /**/) {
+=======
+buf.push('</select><input name="name"/><button>+</button></div>');
+}
+return buf.join("");
+}
+jade.templates["part"] = function(locals, attrs, escape, rethrow, merge) {
+>>>>>>> 438da4c963442fd141e19f9918d3e8a1d57c71f1
 attrs = attrs || jade.attrs; escape = escape || jade.escape; rethrow = rethrow || jade.rethrow; merge = merge || jade.merge;
 var buf = [];
 with (locals || {}) {
@@ -276,25 +298,41 @@ else
 buf.push('<div class="hp-empty"></div>');
 }
 }
+<<<<<<< HEAD
 buf.push('<div class="controls"><div class="repair-manual">+</div><div class="damage-manual">-</div></div></div>');
+=======
+buf.push('</div>');
+>>>>>>> 438da4c963442fd141e19f9918d3e8a1d57c71f1
 }
 buf.push('</div>');
 }
 return buf.join("");
 }
+<<<<<<< HEAD
 jade.templates["players"] = function(locals, attrs, escape, rethrow, merge
 /**/) {
+=======
+jade.templates["players"] = function(locals, attrs, escape, rethrow, merge) {
+>>>>>>> 438da4c963442fd141e19f9918d3e8a1d57c71f1
 attrs = attrs || jade.attrs; escape = escape || jade.escape; rethrow = rethrow || jade.rethrow; merge = merge || jade.merge;
 var buf = [];
 with (locals || {}) {
 var interp;
 buf.push('<ul>');
+<<<<<<< HEAD
+=======
+ console.log('rendering players', players);
+>>>>>>> 438da4c963442fd141e19f9918d3e8a1d57c71f1
 // iterate players
 ;(function(){
   if ('number' == typeof players.length) {
     for (var $index = 0, $$l = players.length; $index < $$l; $index++) {
       var player = players[$index];
 
+<<<<<<< HEAD
+=======
+ console.log(player, active_player);
+>>>>>>> 438da4c963442fd141e19f9918d3e8a1d57c71f1
 buf.push('<li');
 buf.push(attrs({ "class": (player == active_player ? 'active': 'inactive') }, {"class":true}));
 buf.push('><div class="name">');
@@ -306,6 +344,10 @@ buf.push('</div><div class="remove">x</div></li>');
     for (var $index in players) {
       var player = players[$index];
 
+<<<<<<< HEAD
+=======
+ console.log(player, active_player);
+>>>>>>> 438da4c963442fd141e19f9918d3e8a1d57c71f1
 buf.push('<li');
 buf.push(attrs({ "class": (player == active_player ? 'active': 'inactive') }, {"class":true}));
 buf.push('><div class="name">');
@@ -316,12 +358,20 @@ buf.push('</div><div class="remove">x</div></li>');
   }
 }).call(this);
 
+<<<<<<< HEAD
 buf.push('</ul><div class="new"><input required="required" name="name" placeholder="new player"/><button>+</button></div>');
 }
 return buf.join("");
 }
 jade.templates["weapon"] = function(locals, attrs, escape, rethrow, merge
 /**/) {
+=======
+buf.push('</ul><div class="new"><input required="required" name="name"/><button>+</button></div>');
+}
+return buf.join("");
+}
+jade.templates["weapon"] = function(locals, attrs, escape, rethrow, merge) {
+>>>>>>> 438da4c963442fd141e19f9918d3e8a1d57c71f1
 attrs = attrs || jade.attrs; escape = escape || jade.escape; rethrow = rethrow || jade.rethrow; merge = merge || jade.merge;
 var buf = [];
 with (locals || {}) {

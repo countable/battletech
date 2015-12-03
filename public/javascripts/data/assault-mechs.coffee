@@ -585,4 +585,4 @@
         
         CRIT_HEAD_4: 'Heat Sink'
         
-) window.MECHS
+).apply window.MECHS

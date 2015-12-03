@@ -10,6 +10,18 @@ view = ->
   bone.view[name] = bone.view.apply bone, arguments
 ###
 
+view = (root, opts) ->
+  
+  for ev_spec,handler of opts.events
+    ev_spec = ev_spec.split ' '
+    ev_type = ev_spec[0]
+    selector = ev_spec[1...].join(' ')
+    console.log ev_type, root+' '+selector
+    $().on ev_type, root+' '+selector, opts[handler]
+  
+
+
+
 $.fn.item = ->
   node = @
   while node

@@ -1085,6 +1085,10 @@
       return _Class;
 
     })(ATLAS);
+<<<<<<< HEAD
   })(window.MECHS);
+=======
+  }).apply(window.MECHS);
+>>>>>>> 438da4c963442fd141e19f9918d3e8a1d57c71f1
 
 }).call(this);

@@ -1,8 +1,12 @@
 
 ul
   for mech in active_player.mechs
+<<<<<<< HEAD
     - console.log(active_mech && active_mech.name, mech.name, (active_mech && (mech.name == active_mech.name)) ? 'active': 'inactive')
     li(class = (active_mech && (mech.name == active_mech.name)) ? 'active': 'inactive')
+=======
+    li(class = mech == active_mech ? 'active': 'inactive')
+>>>>>>> 438da4c963442fd141e19f9918d3e8a1d57c71f1
       .name!= mech.name
       .type!= mech.type
       .remove x
@@ -12,5 +16,9 @@ ul
       - MECH = MECHS[title]
       option(value=MECH.prototype.NAME)!= MECH.prototype.NAME
 
+<<<<<<< HEAD
   input(name='name', placeholder='new mech')
+=======
+  input(name='name')
+>>>>>>> 438da4c963442fd141e19f9918d3e8a1d57c71f1
   button +

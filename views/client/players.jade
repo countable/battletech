@@ -1,8 +1,18 @@
 ul
+<<<<<<< HEAD
   for player in players
+=======
+  - console.log('rendering players', players);
+  for player in players
+    - console.log(player, active_player);
+>>>>>>> 438da4c963442fd141e19f9918d3e8a1d57c71f1
     li(class = player == active_player ? 'active': 'inactive')
       .name!= player.name
       .remove x
 .new
+<<<<<<< HEAD
   input(required=true, name='name', placeholder='new player')
+=======
+  input(required=true, name='name')
+>>>>>>> 438da4c963442fd141e19f9918d3e8a1d57c71f1
   button +

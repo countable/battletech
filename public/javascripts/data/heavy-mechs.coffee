@@ -761,4 +761,8 @@
     CRIT_RIGHT_TORSO_7: 'AC/10'
     CRIT_RIGHT_TORSO_8: 'Ammo (AC/10) 10'
     CRIT_RIGHT_TORSO_9: 'Ammo (AC/10) 10'
+<<<<<<< HEAD
 ) window.MECHS
+=======
+).apply window.MECHS
+>>>>>>> 438da4c963442fd141e19f9918d3e8a1d57c71f1

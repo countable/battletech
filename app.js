@@ -4,6 +4,7 @@
  */
 
 var express = require('express')
+<<<<<<< HEAD
   , routes = require('./routes')
   , user = require('./routes/user')
   , http = require('http')
@@ -20,6 +21,12 @@ bone.set('io.options', {
 
 
 app.use(bone.static());
+=======
+  , http = require('http')
+  , app = express()
+  , server = http.createServer(app)
+  , path = require('path');
+>>>>>>> 438da4c963442fd141e19f9918d3e8a1d57c71f1
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -31,12 +38,15 @@ app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
+<<<<<<< HEAD
 app.use(
   new assets.JadeAsset({
       url: '/templates.js',
       dirname: './views/client'
   })
 );
+=======
+>>>>>>> 438da4c963442fd141e19f9918d3e8a1d57c71f1
 
 // development only
 if ('development' == app.get('env')) {
@@ -46,7 +56,10 @@ if ('development' == app.get('env')) {
 app.get('/', function(req,res){
   res.render('index');
 });
+<<<<<<< HEAD
 app.get('/users', user.list);
+=======
+>>>>>>> 438da4c963442fd141e19f9918d3e8a1d57c71f1
 
 server.listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

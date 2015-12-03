@@ -41,6 +41,10 @@ NS.MECHS = {}
     CRIT_RIGHT_LEG_2: 'Upper Leg Actuator'
     CRIT_RIGHT_LEG_3: 'Lower Leg Actuator'
     CRIT_RIGHT_LEG_4: 'Foot Actuator'
+<<<<<<< HEAD
+=======
+    
+>>>>>>> 438da4c963442fd141e19f9918d3e8a1d57c71f1
 
     getWeightClass: ->
         if @TONNAGE <= 35
@@ -52,6 +56,20 @@ NS.MECHS = {}
         if @TONNAGE >= 80
             'ASSAULT'
 
+<<<<<<< HEAD
+=======
+
+    getCriticalSlots: ->
+      slots = []
+      for k,v of @
+        if k.indexOf('CRIT') > -1
+          slots.push
+            slot: k
+            item: v
+      slots
+
+
+>>>>>>> 438da4c963442fd141e19f9918d3e8a1d57c71f1
     constructor: (base)->
       
       for k,v of base
