@@ -44,9 +44,10 @@ input, select
     -webkit-transform: scale(1.2);
 
 .fire
-  border 2px solid red
+  background-color red
   border-radius 5px
   padding 10px 20px
+  margin-top 20px
   &:hover
     background-color red
     color white
@@ -100,17 +101,20 @@ input, select
     color red
   .new
     padding-top 5px
-    display inline-block
+    float right
     button
       margin 0
     input
       width 150px
 
 .parts
+  &.dead
+    .part
+      background-color #aaa
   background url(/images/mech.png) no-repeat
   position relative
   height 410px
-  width 300px
+  width 700px
   margin-right 200px
   float left
   .part
@@ -161,13 +165,13 @@ input, select
     left 12px
     -webkit-transform rotate(5deg)
   .RIGHT_ARM
-    right 12px
+    left 240px
     -webkit-transform rotate(-5deg)
   .LEFT_LEG
     left 65px
     -webkit-transform rotate(7deg)
   .RIGHT_LEG
-    right 65px
+    left 187px
     -webkit-transform rotate(-7deg)
 
   // TORSO
@@ -179,12 +183,12 @@ input, select
   .LEFT_TORSO
     left 72px
   .RIGHT_TORSO
-    right 72px
+    left 180px
   .LEFT_TORSO, .RIGHT_TORSO
     top 95px
     width 50px
   .LEFT_TORSO_REAR, .CENTER_TORSO_REAR, .RIGHT_TORSO_REAR        
-    top 30px
+    top 10px
     width 50px
     height 50px
   .LEFT_TORSO_REAR
@@ -193,7 +197,34 @@ input, select
     left 375px
   .RIGHT_TORSO_REAR
     left 430px
+  
+  .crit
+    position absolute
+    width 150px
+    height 150px
+    h5
+      text-align center
+    p
+      font-size 10px
+    .destroyed
+      color darkred
+  
 
+  // ARMS and LEGS
+  .CRIT_LEFT_ARM, .CRIT_RIGHT_ARM, .CRIT_HEAD
+    top 50px
+  .CRIT_LEFT_TORSO, .CRIT_CENTER_TORSO, .CRIT_RIGHT_TORSO
+    top 200px
+  .CRIT_LEFT_LEG, .CRIT_RIGHT_LEG
+    top 350px
+    
+  .CRIT_LEFT_ARM, .CRIT_LEFT_TORSO, .CRIT_LEFT_LEG
+    left 350px
+  .CRIT_RIGHT_ARM, .CRIT_RIGHT_TORSO, .CRIT_RIGHT_LEG
+    left 650px
+  .CRIT_HEAD, .CRIT_CENTER_TORSO
+    left 500px
+    
 .sides
   padding 20px
   .side
@@ -201,6 +232,10 @@ input, select
 
 .weapons
   float left
+  button.sub, button.add
+    padding 0 3px
+  input
+    padding 0
 .weapon-type
   float left
 .weapon

@@ -23,23 +23,23 @@ critical_hit = (part)->
   candidates = []
   i = 1
   while i <= 12
-    slot = mech['CRIT_'+part+'_'+i]
-    if slot and not mech['destroyed_'+part+'_'+i]
-      candidates.append
+    slot = active_mech['CRIT_'+part+'_'+i]
+    if slot and not active_mech['destroyed_'+part+'_'+i]
+      candidates.push
         row: i
         slot: slot
     i += 1
   if candidates.length
     hit = candidates[Math.floor(Math.random()*candidates.length)]
     add_critical_message 'hit '+part+' : '+hit.slot
-    active_mech['destroyed_'+part+'_'+hit.i] = true
-  #else if PARTS[part].flows_to
-  #  critical_hit PARTS[part].flows_to
+    active_mech['destroyed_'+part+'_'+hit.row] = true
+  else if PARTS[part].flows_to
+    critical_hit PARTS[part].flows_to
 
 
 destroy = ->
   active_mech.destroyed = true
-  alert "DESTROYED!!!"
+  #alert "DESTROYED!!!"
 
 _da_phase = {}
 damage_animation = ($part, damage, critical = '')->
@@ -94,6 +94,7 @@ damage_to = (part, damage, force_critical=false)->
         else if part.indexOf("ARM") > -1 or part.indexOf('LEG') > -1
           add_critical_message part + ' blown off!'
           structure = 0
+          
         else
           critical_hit part
           critical_hit part

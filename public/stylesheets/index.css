@@ -35,9 +35,10 @@ select {
   display: inline-block;
 }
 .fire {
-  border: 2px solid #f00;
+  background-color: #f00;
   border-radius: 5px;
   padding: 10px 20px;
+  margin-top: 20px;
 }
 .fire:hover {
   background-color: #f00;
@@ -112,7 +113,7 @@ select {
 .players .new,
 .mechs .new {
   padding-top: 5px;
-  display: inline-block;
+  float: right;
 }
 .players .new button,
 .mechs .new button {
@@ -126,9 +127,12 @@ select {
   background: url("/images/mech.png") no-repeat;
   position: relative;
   height: 410px;
-  width: 300px;
+  width: 700px;
   margin-right: 200px;
   float: left;
+}
+.parts.dead .part {
+  background-color: #aaa;
 }
 .parts .part {
   border: 2px solid #000;
@@ -188,7 +192,7 @@ select {
   -webkit-transform: rotate(5deg);
 }
 .parts .RIGHT_ARM {
-  right: 12px;
+  left: 240px;
   -webkit-transform: rotate(-5deg);
 }
 .parts .LEFT_LEG {
@@ -196,7 +200,7 @@ select {
   -webkit-transform: rotate(7deg);
 }
 .parts .RIGHT_LEG {
-  right: 65px;
+  left: 187px;
   -webkit-transform: rotate(-7deg);
 }
 .parts .CENTER_TORSO {
@@ -209,7 +213,7 @@ select {
   left: 72px;
 }
 .parts .RIGHT_TORSO {
-  right: 72px;
+  left: 180px;
 }
 .parts .LEFT_TORSO,
 .parts .RIGHT_TORSO {
@@ -219,7 +223,7 @@ select {
 .parts .LEFT_TORSO_REAR,
 .parts .CENTER_TORSO_REAR,
 .parts .RIGHT_TORSO_REAR {
-  top: 30px;
+  top: 10px;
   width: 50px;
   height: 50px;
 }
@@ -232,6 +236,48 @@ select {
 .parts .RIGHT_TORSO_REAR {
   left: 430px;
 }
+.parts .crit {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+}
+.parts .crit h5 {
+  text-align: center;
+}
+.parts .crit p {
+  font-size: 10px;
+}
+.parts .crit .destroyed {
+  color: #8b0000;
+}
+.parts .CRIT_LEFT_ARM,
+.parts .CRIT_RIGHT_ARM,
+.parts .CRIT_HEAD {
+  top: 50px;
+}
+.parts .CRIT_LEFT_TORSO,
+.parts .CRIT_CENTER_TORSO,
+.parts .CRIT_RIGHT_TORSO {
+  top: 200px;
+}
+.parts .CRIT_LEFT_LEG,
+.parts .CRIT_RIGHT_LEG {
+  top: 350px;
+}
+.parts .CRIT_LEFT_ARM,
+.parts .CRIT_LEFT_TORSO,
+.parts .CRIT_LEFT_LEG {
+  left: 350px;
+}
+.parts .CRIT_RIGHT_ARM,
+.parts .CRIT_RIGHT_TORSO,
+.parts .CRIT_RIGHT_LEG {
+  left: 650px;
+}
+.parts .CRIT_HEAD,
+.parts .CRIT_CENTER_TORSO {
+  left: 500px;
+}
 .sides {
   padding: 20px;
 }
@@ -240,6 +286,13 @@ select {
 }
 .weapons {
   float: left;
+}
+.weapons button.sub,
+.weapons button.add {
+  padding: 0 3px;
+}
+.weapons input {
+  padding: 0;
 }
 .weapon-type {
   float: left;
@@ -278,7 +331,6 @@ select {
     opacity: 1;
     -webkit-transform: scale(1);
   }
-
   100% {
     opacity: 0;
     -webkit-transform: scale(1.2);
@@ -289,7 +341,6 @@ select {
     opacity: 1;
     -webkit-transform: scale(1);
   }
-
   100% {
     opacity: 0;
     -webkit-transform: scale(1.2);
@@ -300,18 +351,6 @@ select {
     opacity: 1;
     -webkit-transform: scale(1);
   }
-
-  100% {
-    opacity: 0;
-    -webkit-transform: scale(1.2);
-  }
-}
-@-ms-keyframes boom {
-  0% {
-    opacity: 1;
-    -webkit-transform: scale(1);
-  }
-
   100% {
     opacity: 0;
     -webkit-transform: scale(1.2);
@@ -322,7 +361,6 @@ select {
     opacity: 1;
     -webkit-transform: scale(1);
   }
-
   100% {
     opacity: 0;
     -webkit-transform: scale(1.2);

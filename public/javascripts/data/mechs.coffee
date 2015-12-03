@@ -42,7 +42,6 @@ NS.MECHS = {}
     CRIT_RIGHT_LEG_3: 'Lower Leg Actuator'
     CRIT_RIGHT_LEG_4: 'Foot Actuator'
 
-
     getWeightClass: ->
         if @TONNAGE <= 35
             'LIGHT'
@@ -52,27 +51,6 @@ NS.MECHS = {}
             'HEAVY'
         if @TONNAGE >= 80
             'ASSAULT'
-
-
-    constructor: ->
-
-      # Start at full life
-      for part, part_info of PARTS
-        @['armor_'+part]=@['ARMOR_'+part]
-      for part, part_info of PARTS
-            @['structure_'+part]=@['STRUCTURE_'+part]
-    
-
-    getWeightClass: ->
-        if @TONNAGE <= 35
-            'LIGHT'
-        if @TONNAGE >= 40 and @TONNAGE <= 55
-            'MEDIUM'
-        if @TONNAGE >= 60 and @TONNAGE <= 75
-            'HEAVY'
-        if @TONNAGE >= 80
-            'ASSAULT'
-
 
     constructor: (base)->
       
